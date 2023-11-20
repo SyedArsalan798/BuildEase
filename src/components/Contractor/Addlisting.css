@@ -1,0 +1,71 @@
+/* AddListing.css */
+
+.add-listing-container {
+  /* max-width: 6; */
+  width: auto;
+  margin-left: 20%;
+  margin-right: 10%;
+  margin-top: 2%;
+  /* margin: 0 auto; */
+  padding: 20px;
+  text-align: left;
+  /* border: 1px solid #ddd; */
+  /* border-radius: 5px; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+.listing-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  /* margin-bottom: 5px; */
+  display: block;
+  font-weight: 410;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+button:hover {
+  background-color: #0056b3;
+}
+.public-or-private{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: larger;
+}
+
+/* Add this to your CSS */
+.no-spinners::-webkit-inner-spin-button,
+.no-spinners::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+.no-spinners {
+-moz-appearance: textfield;
+}

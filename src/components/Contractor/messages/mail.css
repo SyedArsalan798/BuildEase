@@ -1,0 +1,99 @@
+/* Styles for the mail component */
+.mail-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Set the container height to cover the screen */
+}
+.container{
+  position: relative;
+  right:9.1%;
+  margin-top: 25px;
+}
+.mail_content {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Expand to fill available space */
+  padding: 35px;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+
+.text-content {
+  flex: 1;
+}
+
+h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.email {
+  margin: 0;
+  color: #888;
+}
+
+.action-buttons {
+  position: relative;
+  right: 10%;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.back-link {
+  text-decoration: none;
+  color: #007bff;
+  /* Adjust the color as needed */
+  /* margin: 20px 0; */
+  padding: 20px 0px;
+  display: inline-block;
+}
+
+/* Search bar styles */
+.search-container {
+  margin-top: 20px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+/*  */
+.arrowText{
+  margin-left: 4px;
+  color:#292D41 ;
+  font-size: 21px;
+}
+.name{
+  margin-bottom: 0;
+}
+.date_container{
+  font-size: 16px;
+  margin-right: 20px;
+}
+.reply{
+  font-size: 12px;
+  color: #FF6C36;
+  margin-right: 30px;
+}
+.ticon{
+  color: #FF6C36;
+  font-size: 12px;
+}
+.mail_text{
+  position: relative;
+  left:3.5%;
+  margin-top: 0;
+}
+/* Additional styles for your components */
+/* ... */
