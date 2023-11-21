@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Contractlist.css';
 import img1 from '../../assets/profile.jpg';
 import User_Sidebar from './User_Sidebar'
-
+import SearchBar from './Searchbar';
 const ContractList = () => {
   const cardsData = [
     { id: 1, title: 'Contract 1', imageSrc: img1},
@@ -15,6 +15,7 @@ const ContractList = () => {
 
   return (
     <>
+    <SearchBar/>
     <User_Sidebar />
     <div className="contract-list-container">
       <h1>Contract List</h1>

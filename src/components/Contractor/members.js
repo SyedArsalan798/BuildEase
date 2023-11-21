@@ -121,7 +121,7 @@ const Member = () => {
                     <div className="member_create_pop_group member_age">
                       <label htmlFor="age">Age</label>
                       <input
-                        type="text"
+                        type="number"
                         id="age"
                         placeholder='25'
                         value={newMember.age}
@@ -135,8 +135,15 @@ const Member = () => {
                         id="phoneNo"
                         placeholder='0335-1234567'
                         value={newMember.phoneNo}
-                        onChange={(e) => setNewMember({ ...newMember, phoneNo: e.target.value })}
+                        onChange={(e) => {
+                          const enteredPhoneNo = e.target.value;
+                          if (enteredPhoneNo.length <= 11) {
+                            setNewMember({ ...newMember, phoneNo: enteredPhoneNo });
+                          }
+                        }}
                       />
+
+                      
                     </div>
                   </div>
                   <div className='member__field_wrap_footer'>

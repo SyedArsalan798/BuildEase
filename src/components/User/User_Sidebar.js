@@ -31,7 +31,7 @@ const User_Sidebar = () => {
           <LinkContainer to="/members"><Nav.Link ><img style={{width: "16px"}} src={Project} alt="" /><span>Running Projects</span></Nav.Link></LinkContainer>
           <LinkContainer to="/home"><Nav.Link ><img style={{width: "16px"}} src={Progress} alt="" /><span>Progress</span></Nav.Link></LinkContainer>
 
-          <LinkContainer to="/messages"><Nav.Link ><img style={{width: "16px"}} src={Message} alt="" /><span>Messages</span></Nav.Link></LinkContainer>
+          <LinkContainer to="/usermsg"><Nav.Link ><img style={{width: "16px"}} src={Message} alt="" /><span>Messages</span></Nav.Link></LinkContainer>
           <LinkContainer to="/costcalculator"><Nav.Link ><img style={{width: "16px"}} src={CostCalculator} alt="" /><span>Cost Calculator</span></Nav.Link></LinkContainer>
           <LinkContainer to="/dailyprice"><Nav.Link ><img style={{width: "16px"}} src={Price} alt="" /><span>Daily Prices</span></Nav.Link></LinkContainer>
 
