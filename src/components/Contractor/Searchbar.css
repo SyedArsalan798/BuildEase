@@ -1,14 +1,24 @@
 .input-group{
-    width: 80%;
     margin-top: 10px;
-
     margin-left: 16%;
+}
+.form-control{
+    border-radius: 50px;
 
 }
 .custom-search-button {
-    color: black; /* Set text color to black */
+
+    /* color: black; Set text color to black */
     background-color:  #e1e6f1;
-    border-color:  grey;
-    
+    /* border-color:  grey; */
+    height: 42px;
+    border-radius: 50px;
+        
+  }
+
+  .custom-search-button:hover {
+    background-color:  #e1e6f1;
+
+ 
     
   }
