@@ -1,0 +1,14 @@
+.input-group{
+    width: 80%;
+    margin-top: 10px;
+
+    margin-left: 16%;
+
+}
+.custom-search-button {
+    color: black; /* Set text color to black */
+    background-color:  #e1e6f1;
+    border-color:  grey;
+    
+    
+  }

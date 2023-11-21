@@ -3,8 +3,7 @@ import UnreadFeedbackList from './unreadfeedbacklist';
 import ReadedFeedbackList from './readfeedbacklist'; 
 import './feedbackeditor.css';
 import Sidebar from '../Sidebar';
-
-
+import SearchBar from '../Searchbar';
 function FeedbackEditor() {
   const [selectedTab, setSelectedTab] = useState('unread');
 
@@ -14,6 +13,7 @@ function FeedbackEditor() {
 
   return (
     <div>
+      <SearchBar/>
       <Sidebar/>
       <div className=''>
         <div className='page__container_wrapper feedback__page'>

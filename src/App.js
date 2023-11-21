@@ -23,6 +23,8 @@ import Prices from './components/Dailyprices/Pricelist';
 import Calculator from './components/costcalculator/calculator';
 import FeedbackEditor from './components/Contractor/messages/feedbackeditor';
 import Mail from './components/Contractor/messages/mail';
+import Request from './components/Contractor/Request';
+// import Searchbar from './components/Contractor/Searchbar';
 function App() {
   return (
     <>
@@ -46,6 +48,9 @@ function App() {
           <Route path='/costcalculator' element={<Calculator />} />
           <Route path='/feedback' element={<FeedbackEditor />} />
           <Route path="/mail/:index" element={<Mail />} />
+          <Route path='/hirerequest' element={<Request />} />
+
+
 
 
 

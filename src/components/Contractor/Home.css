@@ -1,6 +1,6 @@
-/* Home.css */
+Home.css
 
-.container {
+/* .container {
     text-align: center;
     margin-top: 50px;
   }
@@ -19,5 +19,97 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
+  } */
+  /* Home.css */
+
+.container {
+  margin-top: 20px;
+
+}
+h1{
+  margin-left: 20%;
+}
+.button-container {
+  margin-bottom: 20px;
+}
+
+.add-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-left: 20%;
+}
+
+.contractorcard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20%;
+  margin-left: 20%;
+
+}
+
+/* Card.js */
+
+.card-contractor {
+  width: 40%;
+  border: 1px solid #b8b1b1;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.location {
+  font-size: 12px;
+  color: #555;
+}
+
+.card-title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.area-size {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #888;
+}
+
+.area-size-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.more-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.more-link:hover {
+  color: #0056b3;
+}

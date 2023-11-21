@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import AddNewImg from './add.svg';
+import SearchBar from './Searchbar';
 
 import './member.css';
 
@@ -60,6 +61,7 @@ const Member = () => {
 
   return (
     <div>
+      <SearchBar/>
       <Sidebar />
       <div className=''>
         <div className='page__container_wrapper member__page'>
