@@ -19,13 +19,13 @@ const Home = () => {
       <SearchBar />
       <Sidebar />
       <div className="container">
-        <h1>Contractors Home Page</h1>
+        <h1 className='c_home_heading'>Contractors Home Page</h1>
         <div className="button-container">
           <Link to="/contractlisting" className="add-button">
             Add Contract
           </Link>
         </div>
-        <div className="contractorcard-container">
+        <div className="contractor-card-contractors_page">
           <Card className="contractor-card"
             imageSrc={Contractoricon}
             location="Karachi"

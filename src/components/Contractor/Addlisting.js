@@ -292,7 +292,7 @@ const AddListing = () => {
           <Form.Control as="textarea" 
           value={description}
           onChange={handleDescriptionChange}
-          className={`${descriptionFieldRequired ? 'is-invalid' : ''}`}
+          className={`rounded rounded-3 ${descriptionFieldRequired ? 'is-invalid' : ''}`}
           placeholder="Describe your Specified Services" rows={5} />
         </Form.Group>
 

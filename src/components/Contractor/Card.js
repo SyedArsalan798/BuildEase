@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Card = ({ imageSrc, location, title, areaSizeLogo, areaSizeText, description, moreLink }) => {
   return (
-    <div className="card-contractor">
+    <div className="card-contractorr">
       <img src={imageSrc} alt={title} className="card-img-top" />
       <div className="card-body">
         <div className="location">{location}</div>

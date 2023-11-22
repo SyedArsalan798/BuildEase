@@ -14,7 +14,7 @@ const Header = () => {
         gap: theme.spacing(2),
         paddingTop: theme.spacing(10),
         // cor de fundo
-        backgroundColor: 'orange',
+        backgroundColor: '#595f39',
         [theme.breakpoints.down('md')]: {
             flexDirection: 'column',
             alignItems: 'center',

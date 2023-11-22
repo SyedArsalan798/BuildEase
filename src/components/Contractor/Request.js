@@ -49,7 +49,7 @@ const HiringRequests = () => {
     <SearchBar/>
     <Sidebar/>
     <div>
-      <h1>Hiring Requests</h1>
+      <h1 className='hiring_heading'>Hiring Requests</h1>
       <div className="request-list">
         {requests.map((request) => (
           <div className="request-card" key={request.id}>

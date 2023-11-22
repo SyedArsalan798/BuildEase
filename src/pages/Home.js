@@ -4,7 +4,7 @@ import GetStarted from '../components/GetStarted';
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer/Footer';
-
+import HomeCSS from '../pages/HomeCSS.css'
 const Home = () => {
   return (
     <>

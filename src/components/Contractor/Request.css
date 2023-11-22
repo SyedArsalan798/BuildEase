@@ -1,7 +1,9 @@
 /* Add this CSS to your existing stylesheet or create a new one */
 
-h1 {
+.hiring_heading {
     color: #333;
+    margin-left: 20%;
+    margin-top: 2%;
   }
   
   .request-list {
@@ -41,18 +43,17 @@ h1 {
   .actions {
     display: flex;
     justify-content: space-between;
+    
   }
   
-  button {
-    
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  
   .accept-button {
   background-color: #007bff;
   color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   
 }
 .accept-button:hover {

@@ -80,10 +80,11 @@ const itemList = [
 const Navbar = () => {
     return (
         <AppBar
+        className='shadow-sm'
             component="nav"
             position="sticky"
             sx={{
-                backgroundColor: 'orange',
+                backgroundColor: '#595f39',
             }}
             elevation={0}
         >

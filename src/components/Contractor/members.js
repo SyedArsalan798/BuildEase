@@ -25,6 +25,15 @@ const Member = () => {
       age: '30',
       phoneNo: '987-654-3210',
     },
+    {
+      memberName: 'Jane Doe',
+      age: '30',
+      phoneNo: '987-654-3210',
+    }, {
+      memberName: 'Jane Doe',
+      age: '30',
+      phoneNo: '987-654-3210',
+    },
     // Add more sample data as needed
   ];
 

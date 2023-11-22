@@ -2,22 +2,19 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './Detaillist.css'; // Import the CSS file for styling
+import User_Sidebar from './User_Sidebar';
+import SearchBar from './Searchbar';
 const DetailList = () => {
-  // Dummy data (replace with actual data)
-  const details = {
-    title: 'Contractor XYZ',
-    location: '123 Main St, City',
-    type: 'House',
-    areaSize: '200 sq yards',
-    bedrooms: '3 bedrooms',
-    contactNo: '123-456-7890',
-    teamSize: '5 persons',
-    constructionServices: 'Residential, Commercial, Renovations',
+  // Updated data for a project
+  const projectDetails = {
+    title: 'Project ABC',
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac velit vitae elit sodales eleifend. Vivamus interdum ac quam at pellentesque. Phasellus congue aliquet lorem, at hendrerit metus. Integer euismod, neque vel hendrerit accumsan, augue urna tempus purus, vitae scelerisque nunc ipsum sit amet justo.`,
+    type: 'Commercial',
+    residentialOptions: ['Custom Home Building', 'Flat Construction'],
+    commercialOptions: ['Hotel Construction', 'Office', 'Healthcare'],
+    areaSize: '120 sq yards',
   };
-
-  // Dummy description (replace with actual descriptions)
-  const description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac velit vitae elit sodales eleifend. Vivamus interdum ac quam at pellentesque. Phasellus congue aliquet lorem, at hendrerit metus. Integer euismod, neque vel hendrerit accumsan, augue urna tempus purus, vitae scelerisque nunc ipsum sit amet justo.`;
 
   const handleCallContractor = () => {
     // Add logic to handle calling the contractor
@@ -29,45 +26,45 @@ const DetailList = () => {
     console.log('Messaging the contractor...');
   };
 
+  const handleRequestHire = () => {
+    // Add logic to handle hire request
+    console.log('Requesting to hire the contractor...');
+  };
+
   return (
-    <div>
-      <h2>{details.title}</h2>
-      <p>{description}</p>
+    <>
+    <SearchBar/>
+    <User_Sidebar/>
+    <div className="detail-container">
+      <h2>{projectDetails.title}</h2>
+      <p>{projectDetails.description}</p>
       <div>
-        <strong>Location:</strong> {details.location}
+        <strong>Type:</strong> {projectDetails.type}
       </div>
-      <div>
-        <strong>Type:</strong> {details.type}
-      </div>
-      {details.type === 'House' || details.type === 'Both' ? (
+      {projectDetails.type === 'Residential' && (
         <div>
-          <strong>Area Size:</strong> {details.areaSize}
+          <strong>Residential Options:</strong>{' '}
+          {projectDetails.residentialOptions.join(', ')}
         </div>
-      ) : null}
-      {details.type === 'Flats' || details.type === 'Both' ? (
+      )}
+      {projectDetails.type === 'Commercial' && (
         <div>
-          <strong>Bedrooms:</strong> {details.bedrooms}
+          <strong>Commercial Options:</strong>{' '}
+          {projectDetails.commercialOptions.join(', ')}
         </div>
-      ) : null}
+      )}
       <div>
-        <strong>Contact No:</strong> {details.contactNo}
-      </div>
-      <div>
-        <strong>Size of Team:</strong> {details.teamSize}
-      </div>
-      <div>
-        <strong>Construction Services:</strong> {details.constructionServices}
+        <strong>Area Size:</strong> {projectDetails.areaSize}
       </div>
 
-      <div>
-        <Link to="/call-contractor">
-          <button onClick={handleCallContractor}>Call the Contractor</button>
-        </Link>
-        <Link to="/message-contractor">
-          <button onClick={handleMessageContractor}>Message the Contractor</button>
-        </Link>
+      <div className="button-container">
+        <button className="call-button" onClick={handleCallContractor}>Call the Contractor</button>
+        <button className="msg-button" onClick={handleMessageContractor}>Message the Contractor</button>
+        <button className="req-button" onClick={handleRequestHire}>Request Hire</button>
       </div>
     </div>
+    </>
+
   );
 };
 
