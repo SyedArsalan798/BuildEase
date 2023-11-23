@@ -57,14 +57,6 @@ const itemList = [
         text: "Home",
         to: "/"
     },
-    {
-        text: "About",
-        to: "/about"
-    },
-    {
-        text: "Contact",
-        to: "/contact"
-    },
     // New "Service" item with dropdown options
     {
         text: "Service",
@@ -74,6 +66,14 @@ const itemList = [
             { text: "Cost Calculator", to: "/cost-calculator" },
             { text: "Daily Prices", to: "/daily-prices" }
         ]
+    },
+    {
+        text: "About",
+        to: "/about"
+    },
+    {
+        text: "Contact",
+        to: "/contact"
     }
 ];
 
@@ -116,7 +116,7 @@ const Navbar = () => {
                                         >
                                             <ListItemText primary={text} />
                                         </ListItemButton>
-                                        <List className="dropdown-list">
+                                        <List className="py-0 me-4 dropdown-list">
                                             {dropdown.map((option) => (
                                                 <ListItem key={option.text} component={Link} to={option.to}>
                                                     <ListItemText primary={option.text} />

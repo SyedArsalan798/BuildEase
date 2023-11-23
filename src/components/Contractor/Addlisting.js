@@ -19,6 +19,11 @@ const AddListing = () => {
   const [specializedSkills, setSpecializedSkills] = useState('');
   const [estimatedCompletionTime, setEstimatedCompletionTime] = useState('');
   const [actualBudget, setActualBudget] = useState('');
+  const [selectedMaterials, setSelectedMaterials] = useState([])
+  const [selectedMaterialDetails, setSelectedMaterialDetails] = useState({});
+  const [labourRate, setLabourRate] = useState('')
+  const [selectedSteelDetails, setSelectedSteelDetails] = useState([]);
+  
   const estimatedBudgetFromAPI = 100000; // Replace with actual data from API
 
   //All Error Handling
@@ -30,6 +35,8 @@ const AddListing = () => {
   const [locationFieldRequired, setLocationFieldRequired] = useState('')
   const [typeFieldRequired, setTypeFieldRequired] = useState('')
   const [teamFieldRequired, setTeamFieldRequired] = useState('')
+  const [materialFieldRequired, setMaterialFieldRequired] = useState('');
+  const [labourRateRequired, setLabourRateRequired] = useState('')
 
   const [completionTimeFieldRequired, setCompletionTimeFieldRequired] = useState('')
   const [budgetFieldRequired, setBudgetFieldRequired] = useState('')
@@ -55,6 +62,114 @@ const AddListing = () => {
     'Flat Construction',
     'Room',
   ];
+
+  const materialOptions = {
+    cement: [
+      'DG Cement',
+      'Lucky Cement',
+      'Maple Leaf Cement',
+      'Maple Leaf White Cement (40KG)',
+      'Bestway Cement',
+      'Fauji Cement',
+      'Kohat Cement',
+      'Attock Cement',
+      'PakCem',
+      'Askari Cement',
+      'Pioneer',
+      'Flying Cement',
+      'Power Cement',
+      'Cherat Cement',
+    ],
+    //mapia
+    blocks: [
+      'Fair Face 1200 PSI',
+      'Fair Face 500-700',
+      'Hollow 1200 PSI',
+      'Hollow 500-700 PSI',
+      'Solid 1200 PSI',
+      'Solid 500-700 PSI'
+    ],
+    steel: [
+      'Pakistan Steel Mills',
+      'Ittehad Steel',
+      'Mughal Steel',
+      'Amreli Steel',
+      'Ittefaq Steel',
+      'Kamran Steel',
+      'AF Steel',
+      'FF Steel',
+      'Al Haj Asia Star Steel',
+    ],
+    //mapia
+
+    sand: [
+      'Sand-Bholari',
+      'Sand-Fresh Nadi',
+      'Sand-Hub',
+      'Sand-Jhampir',
+      'Sand-Kotri',
+      'Sand-Makli',
+      'Sand-Malir',
+      'Sand-Moram'
+    ],
+    //mapia
+    crush: [
+      'Crush-Margalla',
+      'Crush-Sargodha'
+    ],
+
+    windows: [
+      'Standard Aluminum',
+      'Chawla Aluminium',
+      'Master Aluminum',
+      'GR Aluminium',
+      'Prime Aluminum',
+    ],
+
+    // tiles:
+    // [
+
+      
+    // ],
+    
+
+    doors: [
+      'Plywood/Fiber Doors'
+    ],
+
+    marble: [
+      'Badal',
+      'Tavera',
+      'Flower',
+      'Sunny Grey',
+      'Sunny White',
+      'Zebra',
+      'Ziarat Grey',
+      'Black Granite',
+      'China Verona',
+      'Black galaxy',
+      'Botticino (boticina)',
+      'Silky Black',
+      'Tropical Grey',
+    ],
+
+    labour: 
+    []
+    
+    // <option value="">Select Materials</option>
+    // <option value="cement">Cement</option>
+    // <option value="blocks">Blocks</option>
+    // <option value="steel">Steel - Iron Bar</option>
+    // <option value="sand">Sand</option>
+    // <option value="crush">Crush (Bajri)</option>
+    // <option value="windows">Aluminum Windows</option>
+    // <option value="tiles">Tiles</option>
+    // <option value="doors">Doors (Plywood)</option>
+    // <option value="marble">Marble</option>
+    // <option value="labour">Labour rate</option>
+        
+    
+  };
 
   const architecturalStyles = ['Modern', 'Traditional', 'Contemporary'];
 
@@ -92,10 +207,12 @@ const AddListing = () => {
     }
   };
 
+
   const handleLocationRemove = (location) => {
     const updatedLocations = selectedLocations.filter((loc) => loc !== location);
     setSelectedLocations(updatedLocations);
   };
+
 
   const handleTypeChange = (e) => {
     const value = e.target.value;
@@ -200,6 +317,155 @@ const AddListing = () => {
     }
   }
 
+  
+  const handleMaterialSelect = (e) => {
+    const value = e.target.value;
+    if (!selectedMaterials.includes(value) && value!=="") {
+      setSelectedMaterials([...selectedMaterials, value]);
+      value === '' ? setMaterialFieldRequired('Please select at least one Location') : setMaterialFieldRequired('');
+      // setgeneralFieldRequired(''); //Handling required field while submitting
+    }
+  };
+
+  const handleMaterialRemove = (material) => {
+    const updatedMaterials = selectedMaterials.filter((mat) => mat !== material);
+    setSelectedMaterials(updatedMaterials);
+
+    // Remove material details when a material is removed
+    setSelectedMaterialDetails((prevDetails) => {
+      const updatedDetails = { ...prevDetails };
+      delete updatedDetails[material];
+      return updatedDetails;
+    });
+  };
+
+
+  
+
+  // const handleMaterialDetailsSelect = (material, detail) => {
+  //   setSelectedMaterialDetails((prevDetails) => ({
+  //     ...prevDetails,
+  //     [material]: detail,
+  //   }));
+  // };
+  const handleMaterialDetailsSelect = (material, detail) => {
+    if (detail.trim() !== '') {
+      setSelectedMaterialDetails((prevDetails) => {
+        const existingDetails = prevDetails[material] || [];
+        return {
+          ...prevDetails,
+          [material]: [...new Set([...existingDetails, detail])],
+        };
+      });
+    }
+  };
+  const handleMaterialDetailsRemove = (material, detail) => {
+    setSelectedMaterialDetails((prevDetails) => {
+      const existingDetails = prevDetails[material] || [];
+      const updatedDetails = existingDetails.filter(
+        (selectedDetail) => selectedDetail !== detail
+      );
+      return {
+        ...prevDetails,
+        [material]: updatedDetails,
+      };
+    });
+  };
+
+  const handleLabourRateChange = (e) => {
+    const value = e.target.value;
+    setLabourRate(value);
+    if (value === ''){
+      setLabourRateRequired('Please choose an appropriate rate for the labour');
+    }
+    else{
+      setLabourRateRequired('');
+    }
+  }
+
+  // const renderMaterialDetailsDropdown = (material) => {
+  //   return (
+  //     <Form.Control as="select" key={material} onChange={(e) => handleMaterialDetailsSelect(material, e.target.value)}>
+  //       <option value="">Select Detail for {material}</option>
+  //       {materialOptions[material].map((option) => (
+  //         <option key={option} value={option}>
+  //           {option}
+  //         </option>
+  //       ))}
+  //     </Form.Control>
+  //   );
+  // };
+
+  const renderMaterialDetailsDropdown = (material) => {
+    const selectedDetails = selectedMaterialDetails[material] || [];
+
+    if (material === "labour"){
+      return(
+        <div key={material} className="mb-3">
+        <label style={{display: "inline-block"}} htmlFor={`materialDetailsDropdown_${material}`} className="form-label">
+          {material.charAt(0).toUpperCase() + material.slice(1)} Rates/person (Rs.) <span className='text-danger'>*</span>
+        </label>
+
+        <Form.Control
+        placeholder='e.g. 500'
+          type="number"
+          min={1}
+          id="labourRate"
+          value={labourRate}
+          onChange={handleLabourRateChange}
+          className={`mt-0 ${labourRateRequired ? 'is-invalid' : ''}`}
+          
+        />
+        
+        {labourRateRequired && (
+          <Form.Control.Feedback type="invalid">{labourRateRequired}</Form.Control.Feedback>
+        )}
+        
+        
+      </div>
+
+      );
+    }
+
+    return (
+      <div key={material} className="mb-3">
+        <label style={{display: "inline-block"}} htmlFor={`materialDetailsDropdown_${material}`} className="form-label">
+          {material.charAt(0).toUpperCase() + material.slice(1)}
+        </label>
+        
+        <Dropdown drop="up">
+          <Dropdown.Toggle variant="" className='border' id={`materialDetailsDropdown_${material}`}>
+            Select {material} Details
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            {materialOptions[material].map((option) => (
+              <Dropdown.Item
+                key={option}
+                onClick={() => handleMaterialDetailsSelect(material, option)}
+              >
+                {option}
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+        <div className="mt-2">
+          {selectedDetails.map((detail) => (
+            <Button
+            style={{fontSize: "13px", backgroundColor: "#f1f1f1", color: "black", border: "1px solid black"}}
+              key={detail}
+              variant=""
+              className="me-2 mb-2 rounded-pill"
+              onClick={() => handleMaterialDetailsRemove(material, detail)}
+            >
+              {detail} <span>&times;</span>
+            </Button>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -228,6 +494,10 @@ const AddListing = () => {
       setLocationFieldRequired('Please select at least one Location');
     }
 
+    if (selectedMaterials.length === 0){
+      setMaterialFieldRequired('Please select at least one Material');
+    }
+
     if (selectedType === ''){
       setTypeFieldRequired('Please select type of construction');
     }
@@ -235,6 +505,10 @@ const AddListing = () => {
     if (teamSize === ''){
       setTeamFieldRequired('Please select the number of members of your team');
 
+    }
+
+    if(labourRate === ''){
+      setLabourRateRequired('Please choose an appropriate rate for the labour')
     }
     
     if (actualBudget === ''){
@@ -289,7 +563,8 @@ const AddListing = () => {
 
         <Form.Group className="mb-3">
           <Form.Label className="label">Description <span className='text-danger'>*</span></Form.Label>
-          <Form.Control as="textarea" 
+          <Form.Control as="textarea"
+          style={{resize: "none"}} 
           value={description}
           onChange={handleDescriptionChange}
           className={`rounded rounded-3 ${descriptionFieldRequired ? 'is-invalid' : ''}`}
@@ -537,14 +812,14 @@ const AddListing = () => {
           {/* Estimated Schedule and Budget Section */}
           {selectedType && 
           <div className="mb-3 pt-3">
-            <h5 className='text-secondary'>Estimated Schedule and Budget</h5>
+            <h5 className='text-secondary'>Materials and Resources</h5>
             {selectedType && <hr style={{marginTop: 0}}/>}
 
 
             {/* Estimated Completion Time */}
-            <div className="mb-1">
+            {/* <div className="mb-1">
               <label htmlFor="estimatedCompletionTime" className="form-label">
-                Estimated Completion Time <span className='text-danger'>*</span>
+              List of Required Materials <span className='text-danger'>*</span>
               </label>
               <Form.Control
                 type="text"
@@ -558,9 +833,55 @@ const AddListing = () => {
             {completionTimeFieldRequired && (
               <small className='mt-0 text-danger'>This field is required</small>
 
-            )}
+            )} */}
 
-            {/* Actual Budget */}
+          {/* List of required Materials */}
+
+          <Form.Group className="mb-3">
+          <Form.Label className="label">List of Required Materials <span className='text-danger'>*</span></Form.Label>
+          <Form.Control as="select" onChange={handleMaterialSelect} className={`${materialFieldRequired ? 'is-invalid' : ''}`}>
+            <option value="">Select Materials</option>
+            <option value="cement">Cement</option>
+            <option value="blocks">Blocks</option>
+            <option value="steel">Steel - Iron Bar</option>
+            <option value="sand">Sand</option>
+            <option value="crush">Crush (Bajri)</option>
+            <option value="windows">Aluminum Windows</option>
+            {/* <option value="tiles">Tiles</option> */}
+            <option value="doors">Doors (Plywood)</option>
+            <option value="marble">Marble</option>
+            <option value="labour">Labour rate</option>
+
+          </Form.Control>
+
+          <div className='mt-2'>
+          {selectedMaterials.map((material) => (
+                <Button
+                  style={{fontSize: "13px", backgroundColor: "grey", color: "white"}}
+                  key={material}
+                  variant=""
+                  className="me-2 rounded-pill"
+                  onClick={() => handleMaterialRemove(material)}
+                >
+                  {material} <span>&times;</span>
+                </Button>
+              ))}
+          </div>
+          {/* {JSON.stringify(selectedMaterialDetails, null, 4)} */}
+
+
+
+          {materialFieldRequired && (
+          <Form.Control.Feedback type="invalid">{materialFieldRequired}</Form.Control.Feedback>
+        )}
+        </Form.Group>
+
+        {selectedMaterials.length >= 1 && <h5 className='text-secondary'>Add Sources of Materials</h5>}
+
+        {/* Render Material Details Dropdowns */}
+        {selectedMaterials.map((material) => renderMaterialDetailsDropdown(material))}
+
+            {/* Actual Budget
             <div className="mb-1 mt-3">
               <label htmlFor="actualBudget" className="form-label">
                 Actual Budget <span className='text-danger'>*</span>
@@ -580,7 +901,7 @@ const AddListing = () => {
             {budgetFieldRequired && (
                   // <Form.Control.Feedback type="invalid">{budgetFieldRequired}</Form.Control.Feedback>
                   <small className='mt-0 text-danger'>Please write appropriate budget for the listing</small>
-            )}
+            )} */}
 
             {/* Estimated Budget */}
             <div className="mb-3 mt-3" title='This budget is estimated based on the current market prices of the resourses that would be used for the construction'>
