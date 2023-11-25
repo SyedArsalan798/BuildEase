@@ -4,11 +4,11 @@ import './Searchbar.css';
 const SearchBar = () => {
   return (
     <center>
-    <div className="input-group d-flex justify-content-center align-items-end">
+    <div className="mt-4 input-group d-flex justify-content-center align-items-end">
       <FormControl
         type="search"
         className="form-control px-4 py-2 m-0"
-        placeholder="Search Listing"
+        placeholder="Search Listing by title"
         aria-label="Search"
         aria-describedby="search-addon"
       />

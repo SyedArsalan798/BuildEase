@@ -19,7 +19,7 @@ import Member from './components/Contractor/members';
 import Terms from './components/Contractor/Termsconditon';
 import Runproject from './components/Contractor/Runningproject';
 import Progress from './components/Contractor/Progress';
-import Prices from './components/Dailyprices/Pricelist';
+// import ShowPrices from './ShowPrices';
 import Calculator from './components/costcalculator/calculator';
 import FeedbackEditor from './components/Contractor/messages/feedbackeditor';
 import Mail from './components/Contractor/messages/mail';
@@ -46,7 +46,7 @@ function App() {
           <Route path='/termcondition' element={<Terms />} />
           <Route path='/runningproject' element={<Runproject />} />
           <Route path='/progress' element={<Progress />} />
-          <Route path='/dailyprice' element={<Prices />} />
+          {/* <Route path='/dailyprice' element={<ShowPrices />} /> */}
           <Route path='/costcalculator' element={<Calculator />} />
           <Route path='/feedback' element={<FeedbackEditor />} />
           <Route path="/mail/:index" element={<Mail />} />

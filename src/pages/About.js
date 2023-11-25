@@ -5,8 +5,8 @@ import Gallery from '../components/Gallery';
 const About = () => {
   return (
     <>
-    <Content />
-    <Gallery />
+    {/* <Content /> */}
+    {/* <Gallery /> */}
     </>
   )
 }

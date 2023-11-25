@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
-import AddNewImg from './add.svg';
+// import AddNewImg from './add.svg';
+import AddNew from './images/plus_icon.png'
 import SearchBar from './Searchbar';
 
 import './member.css';
@@ -13,26 +14,31 @@ const Member = () => {
     phoneNo: '',
   });
   const [showAddNewRow, setShowAddNewRow] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({
+    memberName: '',
+    age: '',
+    phoneNo: '',
+  });
 
   const sampleData = [
     {
       memberName: 'John Doe',
       age: '25',
-      phoneNo: '123-456-7890',
+      phoneNo: '03324444444',
     },
     {
       memberName: 'Jane Doe',
       age: '30',
-      phoneNo: '987-654-3210',
+      phoneNo: '03324444444',
     },
     {
       memberName: 'Jane Doe',
       age: '30',
-      phoneNo: '987-654-3210',
+      phoneNo: '03324444444',
     }, {
       memberName: 'Jane Doe',
       age: '30',
-      phoneNo: '987-654-3210',
+      phoneNo: '03324444444',
     },
     // Add more sample data as needed
   ];
@@ -55,18 +61,32 @@ const Member = () => {
   };
 
   const handleSaveNewRow = () => {
-    if (newMember.memberName && newMember.age && newMember.phoneNo) {
+    const isValidAge = /^\d{1,2}$/.test(newMember.age);
+    const isValidPhoneNo = /^\d{11}$/.test(newMember.phoneNo.replace(/[^0-9]/g, ''));
+
+    if (newMember.memberName && isValidAge && isValidPhoneNo) {
       setData([...data, newMember]);
       setNewMember({
         memberName: '',
         age: '',
         phoneNo: '',
       });
+      setValidationErrors({
+        memberName: '',
+        age: '',
+        phoneNo: '',
+      });
       setShowAddNewRow(false);
     } else {
-      alert('Please fill in all fields');
-    }
+      const errors = {
+        memberName: newMember.memberName ? '' : 'Member Name is required',
+        age: isValidAge ? '' : 'Age should be a valid number up to 2 digits',
+        phoneNo: isValidPhoneNo ? '' : 'Phone No should be a valid 11-digit number',
+      };
+      setValidationErrors(errors);
+    }    
   };
+  
 
   return (
     <div>
@@ -76,17 +96,17 @@ const Member = () => {
         <div className='page__container_wrapper member__page'>
           <div className="Member_info_container">
             <div className='heading__and_addbtn'>
-              <h2>
-                Member Information{' '}
-                <span className='addnew__newsUpdate_btn' onClick={handleAddNewRow}>
-                  <img src={AddNewImg} alt='-' /> Add New
-                </span>
-              </h2>
+            <h6 className='c_members_heading'>All the workers under your supervision would be shown here.</h6>
+
+                <div className='addnew__newsUpdate_btn border fw-bold' onClick={handleAddNewRow}>
+                <img width="22" height="22" src={AddNew} alt="plus--v1"/> Add new Member
+                </div>
+              
             </div>
           </div>
 
           <div className="table-container">
-            <table className="data-table">
+            <table className="data-table border">
               <thead>
                 <tr>
                   <th>#</th>
@@ -114,8 +134,8 @@ const Member = () => {
                 <span className="close__member_create_pop" onClick={handleClosePopup}>
                   &times;
                 </span>
-                <h2>Add Member Information</h2>
-                <form className='member__fields_form_wrap'>
+                <h5>Add Member Information</h5>
+                <form className='member__fields_form_wrap' onSubmit={(e) => {e.preventDefault()}}>
                   <div className='member__field_wrap_body'>
                     <div className="member_create_pop_group member_name">
                       <label htmlFor="memberName">Member Name</label>
@@ -126,6 +146,9 @@ const Member = () => {
                         value={newMember.memberName}
                         onChange={(e) => setNewMember({ ...newMember, memberName: e.target.value })}
                       />
+                      {validationErrors.memberName && (
+                        <small className="error-message text-danger">{validationErrors.memberName}</small>
+                      )}
                     </div>
                     <div className="member_create_pop_group member_age">
                       <label htmlFor="age">Age</label>
@@ -136,13 +159,16 @@ const Member = () => {
                         value={newMember.age}
                         onChange={(e) => setNewMember({ ...newMember, age: e.target.value })}
                       />
+                      {validationErrors.age && (
+                        <small className="error-message text-danger">{validationErrors.age}</small>
+                      )}
                     </div>
                     <div className="member_create_pop_group member_phone_no">
                       <label htmlFor="phoneNo">Phone No</label>
                       <input
                         type="text"
                         id="phoneNo"
-                        placeholder='0335-1234567'
+                        placeholder='03351234567'
                         value={newMember.phoneNo}
                         onChange={(e) => {
                           const enteredPhoneNo = e.target.value;
@@ -150,9 +176,13 @@ const Member = () => {
                             setNewMember({ ...newMember, phoneNo: enteredPhoneNo });
                           }
                         }}
+                        
                       />
 
-                      
+                        {validationErrors.phoneNo && (
+                          <small className="error-message text-danger">{validationErrors.phoneNo}</small>
+                        )}
+
                     </div>
                   </div>
                   <div className='member__field_wrap_footer'>

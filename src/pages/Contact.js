@@ -3,8 +3,9 @@ import Details from '../components/Details';
 
 const Contact = () => {
   return (
-    <Details />
+    <></>
+    // <Details />
   )
 }
 
-export default Contact
+export default Contact;

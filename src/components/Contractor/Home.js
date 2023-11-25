@@ -8,6 +8,8 @@ import SearchBar from './Searchbar';
 import Card from './Card'; // Import the Card component
 import Contractoricon from "./images/contractorcard.png";
 import areaicon from './images/areameasure.png';
+import Icon from './images/plus_icon.png'
+// import ShowPrices from '../../ShowPrices';
 const Home = () => {
   const handleAddContract = () => {
     // Add your logic for handling the "Add Contract" button click here
@@ -16,13 +18,17 @@ const Home = () => {
 
   return (
     <>
+      {/* <ShowPrices /> */}
       <SearchBar />
       <Sidebar />
       <div className="container">
-        <h1 className='c_home_heading'>Contractors Home Page</h1>
-        <div className="button-container">
-          <Link to="/contractlisting" className="add-button">
-            Add Contract
+        
+        <h6 className='c_home_heading text-secondary'>All your Listings would be shown here.</h6>
+        <div className="button-containerr">
+          <Link to="/contractlisting" className="add-button align-items-center border">
+          <img width="22" height="22" src={Icon} alt="plus--v1"/>
+          {/* <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/ffffff/plus--v1.png" alt="plus--v1"/> */}
+            <span className='ms-1 me-1 fw-bold'>Create new Listing</span>
           </Link>
         </div>
         <div className="contractor-card-contractors_page">
@@ -31,7 +37,7 @@ const Home = () => {
             location="Karachi"
             title="Commercial Construction"
             areaSizeLogo={areaicon}
-            areaSizeText="180,240 Sq. Yd." 
+            areaSizeText="180, 240 sq. yards" 
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             moreLink="/card1-details"
           />
@@ -40,10 +46,11 @@ const Home = () => {
             location="Karachi"
             title="Residential Construction"
             areaSizeLogo={areaicon}
-            areaSizeText="200,300 Sq. Yd."
+            areaSizeText="200, 300 sq. yards"
             description="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             moreLink="/card2-details"
           />
+
           {/* Add more cards as needed */}
         </div>
       </div>

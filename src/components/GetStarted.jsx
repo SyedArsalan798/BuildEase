@@ -11,7 +11,7 @@ import {
 import Title from './Title'
 // img
 import imgDetail from '../assets/contractor.jpg';
-import imgDetail2 from '../assets/materials.jpg';
+// import imgDetail2 from '../assets/materials.jpg';
 
 const GetStarted = () => {
 
@@ -71,7 +71,7 @@ const GetStarted = () => {
                 }} />
             </Grid>
 
-            <Grid item xs={12} sm={4} md={6}
+            {/* <Grid item xs={12} sm={4} md={6}
             sx={{
                 order: {xs: 4, sm: 4, md: 3},
             }}>
@@ -79,9 +79,9 @@ const GetStarted = () => {
                 style={{ 
                     width: "100%",
                 }} />
-            </Grid>
+            </Grid> */}
 
-            <CustomGridItem item xs={12} sm={8} md={6}
+            {/* <CustomGridItem item xs={12} sm={8} md={6}
             sx={{
                 order: {xs: 3, sm: 3, md: 4},
             }}>
@@ -106,7 +106,7 @@ const GetStarted = () => {
                         </CustomButton>
                     </Link>
                 </Box>
-            </CustomGridItem>
+            </CustomGridItem> */}
         </Grid>
     )
 }

@@ -46,3 +46,8 @@
 .leftMenu__main_wrap a span {
     width: 80%;
 }
+
+.nav-link.active{
+    background: #00B3E3;
+    color: white;
+}

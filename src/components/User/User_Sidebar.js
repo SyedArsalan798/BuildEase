@@ -15,6 +15,7 @@ import Member from "../Contractor/images/member.png";
 import Price from "../Contractor/images/dailyprice.png";
 import Message from "../Contractor/images/feedback.png";
 import Terms from "../Contractor/images/terms.png";
+import Logo from "../Contractor/images/buildease_logo.png"
 
 import { Button } from "react-bootstrap";
 
@@ -22,7 +23,9 @@ const User_Sidebar = () => {
   // const dispatch = useDispatch();
   return (
     <header className="leftSidebar__logo_navigation">
-      
+      <center>
+      <img src={Logo} width={150}></img>
+      </center>
       <nav className="leftSidebarMenu__main_wrap" >
          
         <div className="leftMenu__main_wrap">

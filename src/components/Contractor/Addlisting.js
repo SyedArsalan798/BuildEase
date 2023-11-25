@@ -151,11 +151,7 @@ const AddListing = () => {
       'Botticino (boticina)',
       'Silky Black',
       'Tropical Grey',
-    ],
-
-    labour: 
-    []
-    
+    ]
     // <option value="">Select Materials</option>
     // <option value="cement">Cement</option>
     // <option value="blocks">Blocks</option>
@@ -322,7 +318,7 @@ const AddListing = () => {
     const value = e.target.value;
     if (!selectedMaterials.includes(value) && value!=="") {
       setSelectedMaterials([...selectedMaterials, value]);
-      value === '' ? setMaterialFieldRequired('Please select at least one Location') : setMaterialFieldRequired('');
+      value === '' ? setMaterialFieldRequired('Please select at least one material') : setMaterialFieldRequired('');
       // setgeneralFieldRequired(''); //Handling required field while submitting
     }
   };
@@ -399,33 +395,6 @@ const AddListing = () => {
   const renderMaterialDetailsDropdown = (material) => {
     const selectedDetails = selectedMaterialDetails[material] || [];
 
-    if (material === "labour"){
-      return(
-        <div key={material} className="mb-3">
-        <label style={{display: "inline-block"}} htmlFor={`materialDetailsDropdown_${material}`} className="form-label">
-          {material.charAt(0).toUpperCase() + material.slice(1)} Rates/person (Rs.) <span className='text-danger'>*</span>
-        </label>
-
-        <Form.Control
-        placeholder='e.g. 500'
-          type="number"
-          min={1}
-          id="labourRate"
-          value={labourRate}
-          onChange={handleLabourRateChange}
-          className={`mt-0 ${labourRateRequired ? 'is-invalid' : ''}`}
-          
-        />
-        
-        {labourRateRequired && (
-          <Form.Control.Feedback type="invalid">{labourRateRequired}</Form.Control.Feedback>
-        )}
-        
-        
-      </div>
-
-      );
-    }
 
     return (
       <div key={material} className="mb-3">
@@ -528,7 +497,7 @@ const AddListing = () => {
   return (
     <>
     <Sidebar />
-    <Card className="add-listing-container p-4 shadow-md rounded">
+    <Card className="add-listing-container p-4 shadow-sm rounded">
     <h6 className='mb-1'>Add Listing</h6>
 
       <Form onSubmit={handleSubmit}>
@@ -850,7 +819,7 @@ const AddListing = () => {
             {/* <option value="tiles">Tiles</option> */}
             <option value="doors">Doors (Plywood)</option>
             <option value="marble">Marble</option>
-            <option value="labour">Labour rate</option>
+            {/* <option value="labour">Labour rate</option> */}
 
           </Form.Control>
 
@@ -874,12 +843,39 @@ const AddListing = () => {
           {materialFieldRequired && (
           <Form.Control.Feedback type="invalid">{materialFieldRequired}</Form.Control.Feedback>
         )}
-        </Form.Group>
 
-        {selectedMaterials.length >= 1 && <h5 className='text-secondary'>Add Sources of Materials</h5>}
+        {selectedMaterials.length >= 1 && <h5 className='mt-3 text-secondary'>Add Sources of Materials</h5>}
 
         {/* Render Material Details Dropdowns */}
         {selectedMaterials.map((material) => renderMaterialDetailsDropdown(material))}
+
+
+            {/* Labour Rate input type*/}
+            <div className="mb-3 mt-3">
+            <label style={{display: "inline-block"}} htmlFor="labourRate" className="form-label">
+              Labour Rates/person (Rs.) <span className='text-danger'>*</span>
+            </label>
+
+            <Form.Control
+            placeholder='e.g. 500'
+              type="number"
+              min={1}
+              id="labourRate"
+              value={labourRate}
+              onChange={handleLabourRateChange}
+              className={`mt-0 ${labourRateRequired ? 'is-invalid' : ''}`}
+              
+            />
+            
+            {labourRateRequired && (
+              <Form.Control.Feedback type="invalid">{labourRateRequired}</Form.Control.Feedback>
+            )}
+            
+            
+          </div>
+
+        </Form.Group>
+
 
             {/* Actual Budget
             <div className="mb-1 mt-3">
@@ -905,7 +901,7 @@ const AddListing = () => {
 
             {/* Estimated Budget */}
             <div className="mb-3 mt-3" title='This budget is estimated based on the current market prices of the resourses that would be used for the construction'>
-              <p className="form-label text-secondary"><b>Budget A/C to Current Market: </b>
+              <p className="form-label text-secondary"><b>Overall Material Cost A/C to Current Market: </b>
               <span className='ms-1 fw-bold text-dark' style={{fontSize: "large"}}>{`Rs. ${estimatedBudgetFromAPI}`}</span>
 
               </p>
