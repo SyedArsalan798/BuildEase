@@ -1,0 +1,13 @@
+# Python-related
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Miscellaneous
+.DS_Store
+# *.db
+# *.sqlite
