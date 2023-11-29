@@ -1,5 +1,4 @@
 import React from 'react';
-import Logoo from '../assets/buildeasehomelogo.png'
 import {
     AppBar,
     Toolbar,
@@ -25,6 +24,7 @@ const StyledToolbar = styled(Toolbar)({
 
 const ListMenu = styled(List)(({ theme }) => ({
     display: 'flex',
+    // Adjust styling for the dropdown
     "& .dropdown-list": {
         position: "absolute",
         top: "100%",
@@ -45,23 +45,26 @@ const ListMenu = styled(List)(({ theme }) => ({
             }
         }
     },
+    // Apply hover styling only to the "Service" list item
     "& .service-item:hover .dropdown-list": {
         display: "flex",
     },
 }));
 
+//rotas
 const itemList = [
     {
         text: "Home",
         to: "/"
     },
+    // New "Service" item with dropdown options
     {
         text: "Service",
         dropdown: [
             { text: "Become Contractors", to: "/homecontract" },
             { text: "Sell Materials", to: "/homematerial" },
             { text: "Cost Calculator", to: "/cost-calculator" },
-            { text: "Daily Prices", to: "/dailyprice" }
+            { text: "Daily Prices", to: "/daily-prices" }
         ]
     },
     {
@@ -77,23 +80,21 @@ const itemList = [
 const Navbar = () => {
     return (
         <AppBar
-            className='shadow-sm'
+        className='shadow-sm'
             component="nav"
             position="sticky"
             sx={{
-                backgroundColor: '	#10898d', // Match the header background color
+                backgroundColor: '#595f39',
             }}
             elevation={0}
         >
             <StyledToolbar>
-                {/* Add your logo here */}
-                <Box>
-                <img
-                        src={Logoo}// Replace with the actual path to your logo image
-                        alt="Logo"
-                        style={{ height: '100px', width: '130px' }} // Adjust the height as needed
-                    />
-                </Box>
+                <Typography
+                    variant="h6"
+                    component="h2"
+                >
+                    BuildEase
+                </Typography>
                 <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                     <DrawerItem />
                 </Box>

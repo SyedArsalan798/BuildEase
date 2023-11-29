@@ -1,0 +1,95 @@
+/* Add this CSS to your existing stylesheet or create a new one */
+
+.hiring_heading {
+    margin-left: 20%;
+    margin-top: 3%;
+  }
+  .hiring_heading_h3{
+    color: #333;
+    margin-left: 20%;
+  }
+  
+  .request-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 20%;
+    margin-top: 2%;
+
+  }
+
+  .request-card {
+    width: 25%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+    padding-bottom: 15px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    /* transition: transform 0.2s ease-in-out; */
+    /* margin-bottom: 20px; */
+    /* margin-left: 20%; */
+    /* margin-top: 2%; */
+  }
+  
+  .request-card:hover {
+    /* transform: scale(1.005); */
+  }
+
+  .request-card .requested_para{
+    font-size: medium;
+  }
+  
+  
+  .request-card p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .actions {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 15px;
+    
+  }
+  
+  
+  .accept-button {
+    font-weight: bold;
+  color: #00B3E3;
+  /* padding: 8px 16px; */
+  border: none;
+  /* border-radius: 5px; */
+  cursor: pointer;
+  /* text-decoration: none; */
+  
+}
+.accept-button:hover {
+    color: #00a4d1;
+  }
+  
+  .reject-button {
+    font-weight: bold;
+    color: rgb(255, 77, 77);
+    /* padding: 8px 16px; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* text-decoration: none; */
+
+  }
+
+  .reject-button:hover {
+
+    color: red;
+  
+
+  }
+  
+  /* .reject-button:hover {
+    background-color: #6c757d;
+  } */
+  
+  /* Adjust the colors and styles based on your design preferences */
+  

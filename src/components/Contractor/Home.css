@@ -1,0 +1,128 @@
+/* Home.css */
+
+/* .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  .add-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  /* Home.css */
+
+.container {
+  margin-top: 20px;
+
+}
+.c_home_heading{
+  margin-left: 26%;
+  /* margin-bottom: -240px; */
+  margin-top: 45px;
+
+}
+.button-containerr {
+  
+  margin: 20px auto;
+}
+
+.add-button {
+  /* margin: 20px auto; */
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #0EB7FFC9;
+  text-decoration: none;
+  margin-left: 26%;
+  border-radius: 25px;
+  /* border: 1px solid #0EB7FFC9 */
+}
+
+.contractor-card-contractors_page {
+  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-left: 25%;
+
+}
+
+/* Card.js */
+
+.card-contractor {
+  width: 31%;
+  /* border: 1px solid #b8b1b1; */
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); */
+  margin-top: 10px;
+  margin-left: 10px;
+
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 5px;
+  padding-bottom: 0px;
+  /* transition: transform 0.2s ease-in-out; */
+}
+
+
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); */
+
+
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.location {
+  font-size: 12px;
+}
+
+.card-title {
+  font-size: 18px;
+  /* margin: 10px 0; */
+}
+
+.area-size {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #888;
+}
+
+.area-size-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.more-link {
+  color: #00B3E3;
+  /* text-decoration: none; */
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.more-link:hover {
+  color: #00a4d1;
+}
