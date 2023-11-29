@@ -236,18 +236,98 @@ def fetch_and_scrape_crush(url):
     else:
         return {'error': 'karachiTabContent not found'}
 
+def fetch_and_scrape_marble(url):
+    response = requests.get(url)
+    marble_data = {}
+
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.text, "html.parser")
+        tables = soup.find_all("table")
+
+        all_h2 = soup.find_all('h2')
+        date = all_h2[2]
+        date = date.find('strong').text.strip()
+        
+        if len(tables) >= 2:
+            marble_table = tables[1]
+            rows = marble_table.find_all("tr")[1:]  # Exclude the header row
+
+            for row in rows:
+                columns = row.find_all("td")
+                if len(columns) == 2:
+                    marble_type = columns[0].strong.text.strip()
+                    price = columns[1].strong.text.strip()
+                    marble_data[marble_type] = {"price": price}
+                    # marble_data.append({"Marble Type": marble_type, "Marble Price": price})
+
+        # Extract date and format it
+        # date_str = columns[4].text.strip()
+        # date_obj = datetime.strptime(date_str, '%d-%m-%Y')
+        # formatted_date = date_obj.strftime(f"%d{get_ordinal_suffix(date_obj.day)} %B %Y")
+            marble_data["date"] = mydate
+
+            # print(date)
+
+    return marble_data
+
+def fetch_and_scrape_labour(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Extract data from the table and save it in a dictionary
+    # extracted_date = ""
+    data_table = soup.find('table', id='tablepress-33')
+    # date = soup.find('h2').text
+    # date_regex = r'(\d{1,2}[a-z]{2} \w+ \d{4})'
+    # match = re.search(date_regex, date, re.IGNORECASE)
+    # if match and match.group(1):
+    #     extracted_date = match.group(1)
+    #     setDateForCement(extracted_date)
+    # else:
+    #     extracted_date = 'N/A'
+
+    row = data_table.find_all('tr')[-1]  # Skip the header row
+
+    print(row)
+
+    data = {}
+    columns = row.find_all('td')
+    labour = columns[0].text.strip()
+    price_with_currency = columns[2].text.strip()
+    # # Remove the "Rs." prefix and commas from the price
+    price_range = price_with_currency.replace("Rs.", "").replace("to ","").strip()
+    min_price, max_price = map(int, price_range.split(' '))
+
+    # print(price_range)
+
+
+    # for row in rows:
+    #     columns = row.find_all('td')
+    #     company = columns[0].text.strip()
+    #     price_with_currency = columns[1].text.strip()
+        
+        # # Remove the "Rs." prefix and commas from the price
+        # price_range = price_with_currency.replace("Rs.", "").replace(",", "").strip()
+
+    #     # Split the price range into min and max values
+        # min_price, max_price = map(int, price_range.split('-'))
+
+    data[labour] = {'min': min_price, 'max': max_price}
+
+
+    return data
 
 @app.route('/get_prices')
 def get_prices():
     urls = [
-        {"url": "https://priceindex.pk/aluminum-windows-price-pakistan/", "fetch_func": fetch_and_scrape_aluminum},
+        {"url": "https://priceindex.pk/aluminum-windows-price-pakistan/", "fetch_func": fetch_and_scrape_aluminum}, 
         {"url": "https://priceindex.pk/cement-price-pakistan/", "fetch_func": fetch_and_scrape_cement},
         {"url": "https://mapia.pk/material-rates", "fetch_func": fetch_and_scrape_steel},
         {"url": "https://mapia.pk/material-rates", "fetch_func": fetch_and_scrape_blocks},  # Add the new function
         {"url": "https://mapia.pk/material-rates", "fetch_func": fetch_and_scrape_sand},  # Add the new function
-        {"url": "https://mapia.pk/material-rates", "fetch_func": fetch_and_scrape_crush}
-
-
+        {"url": "https://mapia.pk/material-rates", "fetch_func": fetch_and_scrape_crush},
+        {"url": "https://priceindex.pk/marble-price-pakistan-marble-types/", "fetch_func": fetch_and_scrape_marble},
+        {"url": "https://priceindex.pk/construction-material-rates-pakistan/", "fetch_func": fetch_and_scrape_labour}
 
     ]
 
@@ -260,6 +340,9 @@ def get_prices():
     blocks_data = results[3]
     sand_data = results[4]
     crush_data = results[5]
+    marble_data = results[6]
+    labour_data = results[7]
+
 
 
     # Without concurrent processes
@@ -267,8 +350,7 @@ def get_prices():
     # cement_data = fetch_and_scrape_cement(urls[1]["url"])
     # steel_data = fetch_and_scrape_steel(urls[2]["url"])
     
-    return jsonify({'aluminum': aluminum_data, 'cement': cement_data, 'steel': steel_data, 'blocks': blocks_data, 'sand': sand_data, 'crush': crush_data})
-
+    return jsonify({'aluminum': aluminum_data, 'cement': cement_data, 'steel': steel_data, 'blocks': blocks_data, 'sand': sand_data, 'crush': crush_data, 'marble': marble_data, 'labour': labour_data})
 
 
 if __name__ == '__main__':

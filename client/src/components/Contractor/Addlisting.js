@@ -137,10 +137,6 @@ const AddListing = () => {
     // ],
     
 
-    doors: [
-      'Plywood/Fiber Doors'
-    ],
-
     marble: [
       'Badal',
       'Tavera',
@@ -821,7 +817,7 @@ const AddListing = () => {
             <option value="crush">Crush (Bajri)</option>
             <option value="windows">Aluminum Windows</option>
             {/* <option value="tiles">Tiles</option> */}
-            <option value="doors">Doors (Plywood)</option>
+            {/* <option value="doors">Doors (Plywood)</option> */}
             <option value="marble">Marble</option>
             {/* <option value="labour">Labour rate</option> */}
 

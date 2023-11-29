@@ -34,6 +34,10 @@
     margin-top: 18px;
     margin-left: 20%;
   }
+
+  .data-table th{
+    background-color:  #e1e6f1;
+  }
   
   .data-table th,
   .data-table td {
