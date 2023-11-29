@@ -110,12 +110,16 @@ const AddListing = () => {
       'Sand-Kotri',
       'Sand-Makli',
       'Sand-Malir',
-      'Sand-Moram'
+      'Sand-Moram',
+      'Sand-Hyderabad',
+      'Sand-Lasbela',
+      'Sand-Thatta'   
     ],
     //mapia
     crush: [
-      'Crush-Margalla',
-      'Crush-Sargodha'
+      'Crush-(Hassan Peer,Hub,Thatta) 10-25mm',
+      'Crush-Khaka',
+      'Crush-Stone Soling (Rohra) 2"-3" 50-80mm'
     ],
 
     windows: [
@@ -497,7 +501,7 @@ const AddListing = () => {
   return (
     <>
     <Sidebar />
-    <Card className="add-listing-container p-4 shadow-sm rounded">
+    <Card className="add-listing-container p-4 border">
     <h6 className='mb-1'>Add Listing</h6>
 
       <Form onSubmit={handleSubmit}>

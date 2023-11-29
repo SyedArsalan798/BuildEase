@@ -64,7 +64,7 @@ const itemList = [
             { text: "Become Contractors", to: "/homecontract" },
             { text: "Sell Materials", to: "/homematerial" },
             { text: "Cost Calculator", to: "/cost-calculator" },
-            { text: "Daily Prices", to: "/daily-prices" }
+            { text: "Daily Prices", to: "/dailyprice" }
         ]
     },
     {
