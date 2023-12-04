@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
 import ShowPricesCSS from './ShowPrices.css'
+import { useShowPricesData } from './ShowPricesDataProvider';
 import Sidebar from "./components/Contractor/Sidebar";
+const ShowPricesContractor = () => {
+    const { data, loading } = useShowPricesData();
+    // const [data, setData] = useState({});
+    // const [loading, setLoading] = useState(false)
 
-const ShowPrices = () => {
-    const [data, setData] = useState({});
-    const [loading, setLoading] = useState(false)
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             setLoading(true)
+    //             const response = await fetch("/get_prices"); // Updated endpoint
+    //             const data = await response.json();
+    //             setData(data);
+    //             setLoading(false)
+    //         } catch (error) {
+    //             setLoading(true)
+    //             console.error("Error fetching data:", error);
+    //         }
+    //     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true)
-                const response = await fetch("/get_prices"); // Updated endpoint
-                const data = await response.json();
-                setData(data);
-                setLoading(false)
-            } catch (error) {
-                setLoading(true)
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
+    //     fetchData();
+    // }, []);
 
     let alum_date = data.aluminum ? data.aluminum.date : 'N/A';
     let cement_date = data.cement ? data.cement.date : 'N/A';
@@ -39,6 +40,7 @@ const ShowPrices = () => {
         <>
         <Sidebar />
         <center>
+        {/* <p className="text-success">Refresh the page to see daily updated data</p> */}
         <div className="all_prices">
         <h3>Cement Prices</h3>
             {loading ? (
@@ -332,4 +334,4 @@ const ShowPrices = () => {
     );
 };
 
-export default ShowPrices;
+export default ShowPricesContractor;

@@ -1,6 +1,8 @@
 import React from'react';
 //rotas
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { ShowPricesDataProvider } from './ShowPricesDataProvider';
+
 //pages
 import Home from './pages/Home';
 import About from './pages/About';
@@ -19,7 +21,8 @@ import Member from './components/Contractor/members';
 import Terms from './components/Contractor/Termsconditon';
 import Runproject from './components/Contractor/Runningproject';
 import Progress from './components/Contractor/Progress';
-import ShowPrices from './ShowPrices';
+import ShowPricesUser from './ShowPricesUser';
+import ShowPricesContractor from './ShowPricesContractor'; 
 import Calculator from './components/costcalculator/calculator';
 import FeedbackEditor from './components/Contractor/messages/feedbackeditor';
 import Mail from './components/Contractor/messages/mail';
@@ -29,7 +32,8 @@ import Usermail from './components/User/messages/mail';
 // import Searchbar from './components/Contractor/Searchbar';
 function App() {
   return (
-    <>
+
+    <ShowPricesDataProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -46,7 +50,8 @@ function App() {
           <Route path='/termcondition' element={<Terms />} />
           <Route path='/runningproject' element={<Runproject />} />
           <Route path='/progress' element={<Progress />} />
-          <Route path='/dailyprice' element={<ShowPrices />} />
+          <Route path='/u_dailyprice' element={<ShowPricesUser />} />
+          <Route path='/c_dailyprice' element={<ShowPricesContractor />} />
           <Route path='/costcalculator' element={<Calculator />} />
           <Route path='/feedback' element={<FeedbackEditor />} />
           <Route path="/mail/:index" element={<Mail />} />
@@ -78,7 +83,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-    </>
+    </ShowPricesDataProvider>
   );
 }
 

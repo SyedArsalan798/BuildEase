@@ -1,5 +1,6 @@
 import React from 'react';
-import Logoo from '../assets/buildeasehomelogo.png'
+import Logoo from '../components/Contractor/images/buildease_logo.png'
+
 import {
     AppBar,
     Toolbar,
@@ -10,6 +11,7 @@ import {
     styled,
     ListItemButton,
     ListItemText,
+    Button
 } from '@mui/material';
 // menu
 import DrawerItem from './DrawerItem';
@@ -32,16 +34,17 @@ const ListMenu = styled(List)(({ theme }) => ({
         backgroundColor: "#fff",
         boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.1)",
         zIndex: 1,
-        minWidth: "160px",
+        minWidth: "200px",
         display: "none",
         flexDirection: "column",
-        "& a": {
+        borderRadius: '20px',
+        "& a": {  
+            borderRadius: '20px',
             color: "#1e2a5a",
-            padding: "12px",
+            padding: "5px 20px",
             textDecoration: "none",
             "&:hover": {
-                backgroundColor: "grey",
-                color: "#fff"
+                color: "grey"
             }
         }
     },
@@ -56,12 +59,12 @@ const itemList = [
         to: "/"
     },
     {
-        text: "Service",
+        text: "Services",
         dropdown: [
-            { text: "Become Contractors", to: "/homecontract" },
-            { text: "Sell Materials", to: "/homematerial" },
-            { text: "Cost Calculator", to: "/cost-calculator" },
-            { text: "Daily Prices", to: "/dailyprice" }
+            { text: "Become Contractor", to: "/homecontract" },
+            // { text: "Sell Materials", to: "/homematerial" },
+            { text: "Cost Calculator", to: "/costcalculator" },
+            { text: "Daily Prices", to: "/u_dailyprice" }
         ]
     },
     {
@@ -77,45 +80,44 @@ const itemList = [
 const Navbar = () => {
     return (
         <AppBar
-            className='shadow-sm'
             component="nav"
-            position="sticky"
+            // position="sticky"
             sx={{
-                backgroundColor: '	#10898d', // Match the header background color
+                backgroundColor: '#f2f2f0', // Match the header background color
             }}
             elevation={0}
         >
-            <StyledToolbar>
+            <StyledToolbar className='d-flex align-items-center justify-content-between'>
                 {/* Add your logo here */}
                 <Box>
                 <img
                         src={Logoo}// Replace with the actual path to your logo image
                         alt="Logo"
-                        style={{ height: '100px', width: '130px' }} // Adjust the height as needed
+                        style={{ height: '100px', width: '110px' }} // Adjust the height as needed
                     />
                 </Box>
-                <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+                {/* <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                     <DrawerItem />
-                </Box>
+                </Box> */}
                 <ListMenu>
                     {itemList.map((item) => {
                         const { text, to, dropdown } = item;
                         return (
-                            <ListItem key={text} className={text === "Service" ? "service-item" : ""}>
+                            <ListItem key={text} className={text === "Services" ? "service-item" : ""}>
                                 {dropdown ? (
                                     <>
                                         <ListItemButton
                                             sx={{
-                                                color: '#fff',
-                                                "&:hover": {
-                                                    backgroundColor: 'transparent',
-                                                    color: '#1e2a5a',
-                                                }
+                                                color: '#000000',
+                                                borderRadius: "20px",
+                                                
                                             }}
                                         >
-                                            <ListItemText primary={text} />
+                                        <Typography fontWeight="500">
+                                            {text}
+                                        </Typography>                                        
                                         </ListItemButton>
-                                        <List className="py-0 me-4 dropdown-list">
+                                        <List className="me-4 dropdown-list">
                                             {dropdown.map((option) => (
                                                 <ListItem key={option.text} component={Link} to={option.to}>
                                                     <ListItemText primary={option.text} />
@@ -125,21 +127,41 @@ const Navbar = () => {
                                     </>
                                 ) : (
                                     <ListItemButton component={Link} to={to}
-                                        sx={{
-                                            color: '#fff',
-                                            "&:hover": {
-                                                backgroundColor: 'transparent',
-                                                color: '#1e2a5a',
-                                            }
-                                        }}
+                                    sx={{
+                                        color: '#000000',
+                                        borderRadius: "20px",
+                                        
+                                    }}
                                     >
-                                        <ListItemText primary={text} />
+                                    <Typography fontWeight="500">
+                                    {text}
+                                    </Typography>
                                     </ListItemButton>
+
                                 )}
                             </ListItem>
                         );
                     })}
+
                 </ListMenu>
+
+                <Button
+                        component={Link}
+                        //signup page
+                        to={'/'}
+                        variant='contained'
+                        sx={{
+                            mr: 2,
+                            px: 4,
+                            py: 1.5,
+                            fontSize: '0.9rem',
+                            textTransform: 'capitalize',
+                            borderRadius: 20,
+                            // border: "2px solid #1976d2"
+                        }}
+                    >
+                        Sign up
+                    </Button>
             </StyledToolbar>
         </AppBar>
     );

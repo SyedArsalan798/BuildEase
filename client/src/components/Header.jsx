@@ -8,15 +8,17 @@ const Header = () => {
 
     const CustomBox = styled(Box)(({ theme }) => ({
         minHeight: '80vh',
+        height: "100%",
+        // marginTop: "-50px",
         display: 'flex',
-        justifyContent: 'center',
-        gap: theme.spacing(2),
-        paddingTop: theme.spacing(10),
-        backgroundColor: '#046169',
+        // justifyContent: 'space-around',
+        alignItems: 'center',
+        gap: theme.spacing(4),
+        backgroundColor: '#f2f2f0',
         [theme.breakpoints.down('md')]: {
+            paddingTop: "200px",
             flexDirection: 'column',
             alignItems: 'center',
-            textAlign: 'center',
         }
     }));
 
@@ -35,63 +37,64 @@ const Header = () => {
         [theme.breakpoints.down('md')]: {
             flex: '1',
             paddingTop: '30px',
-            alignSelf: 'center',
+            alignSelf: 'end',
         },
         [theme.breakpoints.up('md')]: {
             flex: '2',
             alignSelf: 'flex-end',
         },
         overflow: 'hidden', // Ensure the image doesn't overflow its container
-        borderRadius: '8px', // Add some border-radius for a modern look
     }));
 
     return (
+        <center>
         <CustomBox component='header'>
             <BoxText component='section'>
                 <Typography
-                    variant='h2'
+                className=''
+                    variant='h3'
                     component='h1'
                     sx={{
                         fontWeight: 700,
-                        color: '#fff',
+                        color: '#000000',
+                        fontFamily: "sans-serif"
                     }}
                 >
-                    We'll build the house of your dreams
+                    Designing Dreams, Building Futures
                 </Typography>
 
                 <Typography
                     variant='p'
                     component='p'
                     sx={{
+                        fontSize: "18px",
+                        fontWeight: '400',
                         py: 3,
                         lineHeight: 1.6,
-                        color: '#fff',
+                        color: 'black',
                     }}
                 >
-                    We have over 9000 reviews, and our customers trust our properties and quality products.
+                Your dream home is not just a construction project for us, it's a collaboration in creating lasting legacies.
                 </Typography>
 
                 <Box>
                     <Button
                         component={Link}
-                        to={'/allcontractors'}
+                        to={'/contractorlist'}
                         variant='contained'
                         sx={{
                             mr: 2,
                             px: 4,
-                            py: 1,
+                            py: 1.5,
                             fontSize: '0.9rem',
                             textTransform: 'capitalize',
-                            borderRadius: 0,
-                            backgroundColor: '#f50057',
-                            "&:hover": {
-                                backgroundColor: "#d500f9",
-                            },
+                            borderRadius: 20,
+                            // border: "2px solid #1976d2"
                         }}
                     >
                         Find Contractor
                     </Button>
-                    <Button
+                    {/* <Button
                         component={Link}
                         to={'/about'}
                         variant='outlined'
@@ -101,16 +104,11 @@ const Header = () => {
                             fontSize: '0.9rem',
                             textTransform: 'capitalize',
                             borderRadius: 0,
-                            color: '#fff',
-                            borderColor: '#fff',
-                            "&:hover": {
-                                color: '#f50057',
-                                borderColor: '#f50057',
-                            },
+                            border: "2px solid #1976d2"
                         }}
                     >
                         Explore
-                    </Button>
+                    </Button> */}
                 </Box>
             </BoxText>
 
@@ -119,12 +117,12 @@ const Header = () => {
                     src={headerImg}
                     alt="headerImg"
                     style={{
-                        width: "100%",
-                        marginBottom: -15,
+                        width: "80%",
                     }}
                 />
             </HeaderImgBox>
         </CustomBox>
+        </center>
     )
 }
 
