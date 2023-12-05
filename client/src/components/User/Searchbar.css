@@ -1,25 +1,25 @@
 .input-group{
-    width: 60%;
-    margin-top: 10px;
-    margin-left: 16%;
+  width: 60%;
+  margin-top: 10px;
+  margin-left: 16%;
 }
 .form-control{
-    border-radius: 50px;
+  border-radius: 50px;
 
 }
 .custom-search-button {
 
-    /* color: black; Set text color to black */
-    background-color:  #e1e6f1;
-    /* border-color:  grey; */
-    height: 42px;
-    border-radius: 50px;
-        
-  }
+  /* color: black; Set text color to black */
+  background-color:  #e1e6f1;
+  /* border-color:  grey; */
+  height: 42px;
+  border-radius: 50px;
+      
+}
 
-  .custom-search-button:hover {
-    background-color:  #e1e6f1;
+.custom-search-button:hover {
+  background-color:  #e1e6f1;
 
- 
-    
-  }
+
+  
+}

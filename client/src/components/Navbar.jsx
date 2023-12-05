@@ -61,10 +61,11 @@ const itemList = [
     {
         text: "Services",
         dropdown: [
-            { text: "Become Contractor", to: "/homecontract" },
+            { text: "Start your Project", to: "/contractorlist" },
+            { text: "Become a Contractor", to: "/homecontract" },
             // { text: "Sell Materials", to: "/homematerial" },
             { text: "Cost Calculator", to: "/costcalculator" },
-            { text: "Daily Prices", to: "/u_dailyprice" }
+            { text: "Daily Prices", to: "/u_dailyprice" },
         ]
     },
     {

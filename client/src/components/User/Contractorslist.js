@@ -4,11 +4,15 @@ import './Contractlist.css';
 import img1 from '../../assets/profile.jpg';
 import User_Sidebar from './User_Sidebar';
 import SearchBar from './Searchbar';
+import star from '../Contractor/images/rating.png'
 
 const ContractList = () => {
   const cardsData = [
-    { id: 1, title: 'Commercial Building', imageSrc: img1, rating: 3, date: '4 days ago', readTime: 4 },
-    { id: 2, title: 'Residential Project', imageSrc: img1, rating: 4, date: '3 days ago', readTime: 6 },
+    { id: 1, contractor_name:'Imam Ul Haq', title: 'We will design Commercial Building with Material', imageSrc: img1, rating: 3.4, review_count: 23, date: '4 days ago', views: '42'},
+    { id: 2, contractor_name:'Shahid Khakan', title: 'We will make Residential Project without Material', imageSrc: img1, rating: 4.7, review_count: 23, date: '3 days ago', views: '60' },
+    { id: 3, contractor_name:'Ayaz Hasan', title: 'Commercial Hotel Construction with High Quality Material', imageSrc: img1, rating: 4.4, review_count: 98, date: '3 days ago', views: '6.2K' },
+
+
   ];
 
   return (
@@ -16,36 +20,48 @@ const ContractList = () => {
       <SearchBar />
       <User_Sidebar />
       <div className="contract-list-container">
-        <h1>Contract List</h1>
+      <h6 className='text-secondary'>All the contractor's listings would be shown here.</h6>
+        {/* <h1>Contract List</h1> */}
         <div className="card-container">
           {cardsData.map((card) => (
-            <Link to={'/detailcontract'} key={card.id} className="card-link">
-              <div className="contractorlist-card">
-                <div className="contractorlist-cardimage" style={{ backgroundImage: `url(${card.imageSrc})` }}></div>
-                <div className="contractorlist-cardtext">
-                  <span className="date">{card.date}</span>
-                  <h2>{card.title}</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod
-                    deserunt eligendi dolor
-                  </p>
+            <>
+
+              <div className="contractorlist-card p-0" key={card.id}>
+                <Link to={'/detailcontract'} className="card-link">
+
+                <div className="contractorlist-cardimage">
+                  <img className='border' src={card.imageSrc}></img>
                 </div>
-                <div className="contractorlist-cardstats">
+                </Link>
+                <div className="contractorlist-cardtext mt-1">
+                  <span className="date text-secondary">{card.date}</span>
+                  {/* Contractor Profile link */}
+                  <Link to={'/'} className="card-link">
+                  <p className='fw-bold mb-1 mt-1'>{card.contractor_name}</p>
+                  </Link>
+                  <Link to={'/detailcontract'} className="card-link">
+                  <p className='title m-0 mb-1'>{card.title}</p>
+                  </Link>
+                </div>
+                <div className='mb-1 fw-bold'>From 80 Sq. yards</div>
+
+                <div className="contractorlist-cardstats text-dark mb-1">
+                <div className="stat">
+                   
+                    <img width="20" height="20" src={star} alt="star--v1"/>
+                    <div className="value fw-bold">{card.rating}</div>
+                    <div className="type text-secondary">({card.review_count})</div>
+                  </div>
                   <div className="stat">
-                    <div className="value">
-                      {card.readTime}
-                    </div>
-                    <div className="type">views</div>
-                  </div>
-                  <div className="stat border">
-                    {/* Add your rating logic here */}
-                    <div className="value">{card.rating}</div>
-                    <div className="rating-type">rating</div>
+                  <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/60/visible--v1.png" alt="visible--v1"/>
+                    <div className="value fw-bold">{card.views}</div>
+                    <div className="type text-secondary">views</div>
                   </div>
                 </div>
+                
               </div>
+              </>
               
-            </Link>
           ))}
         </div>
       </div>

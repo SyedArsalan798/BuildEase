@@ -25,10 +25,10 @@ const Home = () => {
         
         <h6 className='c_home_heading text-secondary'>All your Listings would be shown here.</h6>
         <div className="button-containerr">
-          <Link to="/contractlisting" className="add-button align-items-center border">
+          <Link to="/contractlisting" className="add-button border">
           <img width="22" height="22" src={Icon} alt="plus--v1"/>
           {/* <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/ffffff/plus--v1.png" alt="plus--v1"/> */}
-            <span className='ms-1 me-1 fw-bold'>Create new Listing</span>
+            <span className='ms-1 me-1 fw-bold'>Add new Listing</span>
           </Link>
         </div>
         <div className="contractor-card-contractors_page">

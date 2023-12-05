@@ -45,13 +45,13 @@ const Footer = () => {
       <StackColumn>
         <FooterTitle text={'address'} />
         <FooterLink 
-        text={'15th Louis St, london 92382, eng'} 
+        text={'FAST National University, Karachi'} 
         />
         <FooterLink 
-        text={'25 999-345-10800'} 
+        text={'0333-3333333'} 
         />
         <FooterLink 
-        text={'info@housesales.com'} 
+        text={'k201718@nu.edu.pk'} 
         />
       </StackColumn>
       
@@ -70,7 +70,7 @@ const Footer = () => {
       </StackColumn>
 
       <StackColumn>
-        <FooterTitle text={'hBSales'} />
+        <FooterTitle text={'BuildEase'} />
         <Stack 
         direction='row' 
         width= '70px'
@@ -102,7 +102,7 @@ const Footer = () => {
         variant='caption'
         component='p' 
         >
-          &copy; 2022 HBSales Inc.
+          &copy; 2023 BuildEase
         </Typography>
       </StackColumn>
     </BoxRow>
