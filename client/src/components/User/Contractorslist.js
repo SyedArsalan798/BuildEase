@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Contractlist.css';
-import img1 from '../../assets/profile.jpg';
+import img1 from '../../assets/profile.png';
 import User_Sidebar from './User_Sidebar';
 import SearchBar from './Searchbar';
 import star from '../Contractor/images/rating.png'
