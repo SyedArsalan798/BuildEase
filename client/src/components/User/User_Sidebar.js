@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import Nav from "react-bootstrap/Nav";
 // import { Link, useNavigate } from "react-router-dom";
 // import AddListing from "../Contractor/images/addlisting.png";
-import Materials from "../Contractor/images/materials.png";
+// import Materials from "../Contractor/images/materials.png";
 
 import Hire from "../Contractor/images/hire.png";
 
@@ -30,7 +30,7 @@ const User_Sidebar = () => {
          
         <div className="leftMenu__main_wrap">
           <LinkContainer to="/contractorlist"><Nav.Link ><img style={{width: "16px"}} src={Hire} alt="" /><span>Hire Contractor</span></Nav.Link></LinkContainer>
-          <LinkContainer to="/materiallist"><Nav.Link ><img style={{width: "16px"}} src={Materials} alt="" /><span>Buy Materials</span></Nav.Link></LinkContainer>
+          {/* <LinkContainer to="/materiallist"><Nav.Link ><img style={{width: "16px"}} src={Materials} alt="" /><span>Buy Materials</span></Nav.Link></LinkContainer> */}
           <LinkContainer to="/members"><Nav.Link ><img style={{width: "16px"}} src={Project} alt="" /><span>Running Projects</span></Nav.Link></LinkContainer>
           <LinkContainer to="/home"><Nav.Link ><img style={{width: "16px"}} src={Progress} alt="" /><span>Progress</span></Nav.Link></LinkContainer>
 
