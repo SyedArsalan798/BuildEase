@@ -37,7 +37,7 @@ const Sidebar = () => {
           <LinkContainer className="nav-link" to="/hirerequest"><Nav.Link ><img style={{width: "16px"}} src={Request} alt="" /><span>Hiring Request</span></Nav.Link></LinkContainer>
 
           <LinkContainer className="nav-link" to="/feedback"><Nav.Link ><img style={{width: "16px"}} src={Message} alt="" /><span>Messages</span></Nav.Link></LinkContainer>
-          <LinkContainer className="nav-link" to="/costcalculator"><Nav.Link ><img style={{width: "16px"}} src={CostCalculator} alt="" /><span>Cost Calculator</span></Nav.Link></LinkContainer>
+          <LinkContainer className="nav-link" to="/c_costcalculator"><Nav.Link ><img style={{width: "16px"}} src={CostCalculator} alt="" /><span>Cost Calculator</span></Nav.Link></LinkContainer>
           <LinkContainer className="nav-link" to="/c_dailyprice"><Nav.Link ><img style={{width: "16px"}} src={Price} alt="" /><span>Daily Prices</span></Nav.Link></LinkContainer>
 
           <LinkContainer className="nav-link" to="/termcondition"><Nav.Link ><img style={{width: "16px"}} src={Terms} alt="" /><span>Terms & Condition</span></Nav.Link></LinkContainer>

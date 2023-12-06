@@ -23,7 +23,9 @@ import Runproject from './components/Contractor/Runningproject';
 import Progress from './components/Contractor/Progress';
 import ShowPricesUser from './ShowPricesUser';
 import ShowPricesContractor from './ShowPricesContractor'; 
-import Calculator from './components/costcalculator/calculator';
+import UCalculator from './components/costcalculator/u_calculator';
+import CCalculator from './components/costcalculator/c_calculator';
+
 import FeedbackEditor from './components/Contractor/messages/feedbackeditor';
 import Mail from './components/Contractor/messages/mail';
 import Request from './components/Contractor/Request';
@@ -52,7 +54,9 @@ function App() {
           <Route path='/progress' element={<Progress />} />
           <Route path='/u_dailyprice' element={<ShowPricesUser />} />
           <Route path='/c_dailyprice' element={<ShowPricesContractor />} />
-          <Route path='/costcalculator' element={<Calculator />} />
+          <Route path='/u_costcalculator' element={<UCalculator />} />
+          <Route path='/c_costcalculator' element={<CCalculator />} />
+
           <Route path='/feedback' element={<FeedbackEditor />} />
           <Route path="/mail/:index" element={<Mail />} />
           <Route path='/hirerequest' element={<Request />} />
