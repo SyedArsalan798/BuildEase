@@ -2,11 +2,13 @@
 
 .terms-container {
     max-width: 800px;
-    margin: 0 auto;
+    /* display: flex; */
+    /* justify-content: center; */
+    margin: 20px auto;
     padding: 40px;
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
   }
   
   .terms-heading {

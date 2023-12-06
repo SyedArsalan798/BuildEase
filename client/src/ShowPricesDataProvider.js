@@ -23,7 +23,7 @@ export const ShowPricesDataProvider = ({ children }) => {
         setData(newData);
         setLoading(false);
       } catch (error) {
-        setLoading(false);
+        // setLoading(false);
         console.error("Error fetching data:", error);
       }
     };

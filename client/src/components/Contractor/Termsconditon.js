@@ -8,7 +8,8 @@ const TermsCondition = () => {
   return (
     <>
     <Sidebar/>
-    <div className="terms-container">
+    
+    <div className="terms-container border">
       <h1 className="terms-heading">Terms and Conditions</h1>
       <div className="terms-content">
         <p>
