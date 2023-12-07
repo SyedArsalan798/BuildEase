@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Card, Dropdown, Alert } from 'react-bootstrap';
+import { Form, Button, Card, Table } from 'react-bootstrap';
 import Sidebar from '../Contractor/Sidebar';
 import './CalculatorCSS.css'
 
@@ -17,31 +17,49 @@ function UCalculator() {
   const [drawingRooms, setDrawingRooms] = useState(1);
   const [OtherOptionEnabled, setOtherOptionEnabled] = useState(false);
 
+  const [blocksQuantity, setBlocksQuantity] = useState(31347);
+  const [cementQuantity, setCementQuantity] = useState(337);
+  const [sandQuantity, setSandQuantity] = useState(1685);
+  const [crushQuantity, setCrushQuantity] = useState(1102);
+  const [steelQuantity, setSteelQuantity] = useState(2);
+  const [labourCost, setLabourCost] = useState(720);
+
   const [validationError, setValidationError] = useState('');
 
-//   const [data, setData] = useState({});
-//   const [loading, setLoading] = useState(false);
+//   const handleCustomizeInputs = () => {
+//     // Your custom logic for updating quantities based on customized inputs
+//     setBlocksQuantity(31347 + (livingRooms - 1) * 627 + (drawingRooms - 1) * 627 + (kitchens - 1) * 627 + (bathrooms - 1) * 627 + (bedrooms - 1) * 627);
+//     setCementQuantity(337 + (livingRooms - 1) * 7 + (drawingRooms - 1) * 7 + (kitchens - 1) * 7 + (bathrooms - 1) * 7 + (bedrooms - 1) * 7);
+//     setSandQuantity(1685 + (livingRooms - 1) * 34 + (drawingRooms - 1) * 34 + (kitchens - 1) * 34 + (bathrooms - 1) * 34 + (bedrooms - 1) * 34);
+//     // Update other quantities using a similar pattern
+//   };
 
+useEffect(() => {
+    // Update quantities when rooms dropdown values change
+    setBlocksQuantity(31347 + (livingRooms - 1) * 627 + (drawingRooms - 1) * 627 + (kitchens - 1) * 627 + (bathrooms - 1) * 627 + (bedrooms - 1) * 627);
+    setCementQuantity(337 + (livingRooms - 1) * 7 + (drawingRooms - 1) * 7 + (kitchens - 1) * 7 + (bathrooms - 1) * 7 + (bedrooms - 1) * 7);
+    setSandQuantity(1685 + (livingRooms - 1) * 34 + (drawingRooms - 1) * 34 + (kitchens - 1) * 34 + (bathrooms - 1) * 34 + (bedrooms - 1) * 34);
+  }, [bedrooms, bathrooms, kitchens, drawingRooms, livingRooms]);
+
+  const calculateMaterialCost = (quantity, rate) => {
+    return quantity * rate;
+  };
+
+  const calculateFinalCost = () => {
+    // Calculate material costs for each item
+    const blocksCost = calculateMaterialCost(blocksQuantity, 60);
+    const cementCost = calculateMaterialCost(cementQuantity, 1200);
+    const sandCost = calculateMaterialCost(sandQuantity, 50);
+    const crushCost = calculateMaterialCost(crushQuantity, 50);
+    const steelCost = calculateMaterialCost(steelQuantity, 272000);
+    const labourCostPerSqFt = 1033.333333;
+    const labourCostTotal = 720 * labourCostPerSqFt;
+
+    // Calculate final cost by summing up all material costs and labor cost
+    return blocksCost + cementCost + sandCost + crushCost + steelCost + labourCostTotal;
+  };
   const { data, loading } = useShowPricesData();
 
-
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         setLoading(true);
-//         const response = await fetch("/get_prices");
-//         const newData = await response.json();
-//         setData(newData);
-//         setLoading(false);
-//       } catch (error) {
-//         // setLoading(false);
-//         console.error("Error fetching data:", error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
   
 
   const handleSubmit = (e) => {
@@ -76,7 +94,7 @@ function UCalculator() {
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            {JSON.stringify(data)}
+            {/* {JSON.stringify(data)} */}
             <Form.Label className="label">Area Size (in yards) <span className='text-danger'>*</span></Form.Label>
             <Form.Control
               placeholder='e.g 80'
@@ -184,15 +202,80 @@ function UCalculator() {
 
         </div>
 
+                  {/* Display calculated quantities
+        <div>
+            <p>Updated Blocks Quantity: {blocksQuantity}</p>
+            <p>Updated Cement Quantity: {cementQuantity}</p>
+            <p>Updated Sand Quantity: {sandQuantity}</p>
+            <p>Updated Crush Quantity: {crushQuantity}</p>
+            <p>Updated Steel Quantity: {steelQuantity}</p>
+            <p>Updated Labour Cost: {labourCost}</p>
+          </div> */}
+
 
           
           {/* Calculate Cost button */}
           <div className="d-flex justify-content-end">
-            <Button className='rounded-pill' variant="primary" type="submit" style={{ padding: "10px 40px" }}>
+            <Button className='rounded-pill' variant="primary" style={{ padding: "10px 40px" }}>
               Calculate Cost
             </Button>
           </div>
+
+          <Table striped bordered hover className="mt-3">
+            <thead>
+              <tr>
+                <th>Material</th>
+                <th>Quantity</th>
+                <th>Rate (PKR)</th>
+                <th>Material Cost (PKR)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Blocks (500-700 PSI)</td>
+                <td>{blocksQuantity}</td>
+                <td>60</td>
+                <td>{calculateMaterialCost(blocksQuantity, 60)}</td>
+              </tr>
+              <tr>
+                <td>DG Cement (Bags)</td>
+                <td>{cementQuantity}</td>
+                <td>1200</td>
+                <td>{calculateMaterialCost(cementQuantity, 1200)}</td>
+              </tr>
+              <tr>
+                <td>Sand Kotri</td>
+                <td>{sandQuantity}</td>
+                <td>50</td>
+                <td>{calculateMaterialCost(sandQuantity, 50)}</td>
+              </tr>
+              <tr>
+                <td>Hub Crush</td>
+                <td>{crushQuantity}</td>
+                <td>50</td>
+                <td>{calculateMaterialCost(crushQuantity, 50)}</td>
+              </tr>
+              <tr>
+                <td>Amreli Steel (Tons)</td>
+                <td>{steelQuantity}</td>
+                <td>272000</td>
+                <td>{calculateMaterialCost(steelQuantity, 272000)}</td>
+              </tr>
+              <tr>
+                <td>Labor Cost (Per Sq. Ft)</td>
+                <td>{areaSize ? areaSize*9 : 720}</td>
+                <td>1033.333333</td>
+                <td>{areaSize ? calculateMaterialCost(areaSize, 1033.333333) : calculateMaterialCost(720, 1033.333333)}</td>
+              </tr>
+              <tr>
+                <td colSpan="3"><b>Final Cost</b></td>
+                <td><b>Rs. {calculateFinalCost()}</b></td>
+              </tr>
+            </tbody>
+          </Table>
         </Form>
+
+        
         }
       </Card>
       </>
