@@ -29,6 +29,7 @@ import Mail from './components/Contractor/messages/mail';
 import Request from './components/Contractor/Request';
 import Usermsg from './components/User/messages/feedbackeditor';
 import Usermail from './components/User/messages/mail';
+import Card1detail from './components/Contractor/card1info';
 // import Searchbar from './components/Contractor/Searchbar';
 function App() {
   return (
@@ -57,6 +58,8 @@ function App() {
           <Route path="/mail/:index" element={<Mail />} />
           <Route path='/hirerequest' element={<Request />} />
           <Route path='/usermsg' element={<Usermsg />} />
+          <Route path='/card1-details' element={<Card1detail />} />
+
           <Route path="/usermail/:index" element={<Usermail />} />
 
 
