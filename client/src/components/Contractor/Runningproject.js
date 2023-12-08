@@ -2,13 +2,11 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import SearchBar from './Searchbar';
 import './RunningProject.css'; // Import the CSS file
-// import Greendot from './images/green-status.png';
-// import Bluedot from './images/blue-status.png';
-// import Yellowdot from './images/yellow-status.png';
+import Greendot from './images/green-status.png';
+import Bluedot from './images/blue-status.png';
+import Yellowdot from './images/yellow-status.png';
 
-import Greendot from './images/hire.png';
-import Bluedot from './images/hire.png';
-import Yellowdot from './images/hire.png';
+
 
 const RunningProject = () => {
   return (
