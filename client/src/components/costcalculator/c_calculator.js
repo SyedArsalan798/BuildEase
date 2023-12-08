@@ -8,8 +8,8 @@ import { useShowPricesData } from '../../ShowPricesDataProvider';
 
 function UCalculator() {
   const [areaSize, setAreaSize] = useState('');
-  const [constructionType, setConstructionType] = useState('');
-  const [constructionMode, setConstructionMode] = useState('');
+  const [constructionType, setConstructionType] = useState('greyScale');
+  const [constructionMode, setConstructionMode] = useState('withMaterial');
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(1);
   const [kitchens, setKitchens] = useState(1);
@@ -23,8 +23,55 @@ function UCalculator() {
   const [crushQuantity, setCrushQuantity] = useState(1102);
   const [steelQuantity, setSteelQuantity] = useState(2);
   const [labourCost, setLabourCost] = useState(720);
-
   const [validationError, setValidationError] = useState('');
+
+  const [blocksRate, setBlocksRate] = useState(0);
+  const [cementRate, setCementRate] = useState(0);
+  const [sandRate, setSandRate] = useState(0);
+  const [crushRate, setCrushRate] = useState(0);
+  const [steelRate, setSteelRate] = useState(0);
+
+  const { data, loading } = useShowPricesData();
+
+
+
+  const [baseQuantities, setBaseQuantities] = useState({
+    blocks: 31347,
+    cement: 337,
+    sand: 1685,
+    crush: 1102,
+    steel: 2,
+    // Add other quantities as needed
+  });
+
+  useEffect(()=> {
+    const avgCementRate = (parseInt(data.cement['DG Cement'].min) + parseInt(data.cement['DG Cement'].max)) / 2;
+
+
+    setBlocksRate(parseInt(data.blocks["Fair Face 500-700 PSI"].price));
+    setCementRate(avgCementRate)
+    setSandRate(parseInt(data.sand["Sand-Kotri"].price))
+    setCrushRate(parseInt(data.crush['Crush-(Hassan Peer,Hub,Thatta) 10-25mm'].price))
+    setSteelRate(parseInt(data.steel['Amreli Steel 60-Grade'].price * 1000))
+    // setSandRate()
+    // setSandRate()
+
+
+
+  }, []);
+
+  useEffect(() => {
+    // Update quantities when rooms dropdown values change
+    const ratio = areaSize / 80; // Calculate the ratio based on the new area size
+
+    setBlocksQuantity(Math.round((baseQuantities.blocks + (livingRooms - 1) * 627 + (drawingRooms - 1) * 627 + (kitchens - 1) * 627 + (bathrooms - 1) * 627 + (bedrooms - 1) * 627) * ratio));
+    setCementQuantity(Math.floor((baseQuantities.cement + (livingRooms - 1) * 7 + (drawingRooms - 1) * 7 + (kitchens - 1) * 7 + (bathrooms - 1) * 7 + (bedrooms - 1) * 7)*ratio));
+    setSandQuantity(Math.floor((baseQuantities.sand + (livingRooms - 1) * 34 + (drawingRooms - 1) * 34 + (kitchens - 1) * 34 + (bathrooms - 1) * 34 + (bedrooms - 1) * 34) * ratio));
+    setCrushQuantity(Math.floor(baseQuantities.crush * ratio))
+    setSteelQuantity(Math.floor(baseQuantities.steel * ratio))
+  }, [bedrooms, bathrooms, kitchens, drawingRooms, livingRooms, areaSize]);
+
+
 
 //   const handleCustomizeInputs = () => {
 //     // Your custom logic for updating quantities based on customized inputs
@@ -34,31 +81,28 @@ function UCalculator() {
 //     // Update other quantities using a similar pattern
 //   };
 
-useEffect(() => {
-    // Update quantities when rooms dropdown values change
-    setBlocksQuantity(31347 + (livingRooms - 1) * 627 + (drawingRooms - 1) * 627 + (kitchens - 1) * 627 + (bathrooms - 1) * 627 + (bedrooms - 1) * 627);
-    setCementQuantity(337 + (livingRooms - 1) * 7 + (drawingRooms - 1) * 7 + (kitchens - 1) * 7 + (bathrooms - 1) * 7 + (bedrooms - 1) * 7);
-    setSandQuantity(1685 + (livingRooms - 1) * 34 + (drawingRooms - 1) * 34 + (kitchens - 1) * 34 + (bathrooms - 1) * 34 + (bedrooms - 1) * 34);
-  }, [bedrooms, bathrooms, kitchens, drawingRooms, livingRooms]);
+
 
   const calculateMaterialCost = (quantity, rate) => {
     return quantity * rate;
   };
 
   const calculateFinalCost = () => {
+
+    // const avgCementRate = (data.cement['DG Cement'].min + data.cement['DG Cement'].min)/2
+
     // Calculate material costs for each item
-    const blocksCost = calculateMaterialCost(blocksQuantity, 60);
-    const cementCost = calculateMaterialCost(cementQuantity, 1200);
-    const sandCost = calculateMaterialCost(sandQuantity, 50);
-    const crushCost = calculateMaterialCost(crushQuantity, 50);
-    const steelCost = calculateMaterialCost(steelQuantity, 272000);
+    const blocksCost = calculateMaterialCost(blocksQuantity, blocksRate);
+    const cementCost = calculateMaterialCost(cementQuantity, cementRate);
+    const sandCost = calculateMaterialCost(sandQuantity, sandRate);
+    const crushCost = calculateMaterialCost(crushQuantity, crushRate);
+    const steelCost = calculateMaterialCost(steelQuantity, steelRate);
     const labourCostPerSqFt = 1033.333333;
-    const labourCostTotal = 720 * labourCostPerSqFt;
+    const labourCostTotal = (areaSize ? (areaSize * 9) : 720) * labourCostPerSqFt;
 
     // Calculate final cost by summing up all material costs and labor cost
     return blocksCost + cementCost + sandCost + crushCost + steelCost + labourCostTotal;
   };
-  const { data, loading } = useShowPricesData();
 
   
 
@@ -80,13 +124,26 @@ useEffect(() => {
     alert("Form Submitted.");
   };
 
+    // Utility function to format currency
+    const formatCurrency = (amount) => {
+      if (amount >= 10000000) {
+        return `${(amount / 10000000).toFixed(2)} Crore`;
+      } else if (amount >= 100000) {
+        return `${(amount / 100000).toFixed(2)} Lac`;
+      } else if (amount >= 1000) {
+        return `${(amount / 1000).toFixed(2)} Thousand`;
+      } else {
+        return `${amount}`;
+      }
+    };
+
   return (
     <>
     <Sidebar />
     <>
       <Card className="add-listing-container p-4 border mb-4">
+        <small className='d-flex justify-content-end text-secondary'>Try refreshing the page for daily updated information.</small>
         <h6 className='mb-1'>Cost Calculator</h6>
-
         {loading ? (
                 <span>Loading Realtime Data...</span>
 
@@ -94,12 +151,12 @@ useEffect(() => {
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            {/* {JSON.stringify(data)} */}
-            <Form.Label className="label">Area Size (in yards) <span className='text-danger'>*</span></Form.Label>
+            <Form.Label className="label">Area Size (in Sq. yards) <span className='text-danger'>*</span></Form.Label>
             <Form.Control
               placeholder='e.g 80'
               type="number"
               min={75}
+              max={49975}
               value={areaSize}
               onChange={(e) => setAreaSize(e.target.value)}
               className={`${validationError ? 'is-invalid' : ''}`}
@@ -182,19 +239,19 @@ useEffect(() => {
 
         <div className='enabledOptions'>
 
-        <p onClick={function(){
+        <p className='mb-0' style={{color: '#00B3E3', fontSize: '14px'}} onClick={function(){
             setOtherOptionEnabled(!OtherOptionEnabled)
         }}>{OtherOptionEnabled ? 
         <>
         Less Options
-        <img width="15" height="15" src={DropUp} alt="expand-arrow--v1"/>
+        <img width="12" height="12" src={DropUp} alt="expand-arrow--v1"/>
 
         </>
         
         : 
         <>
         More Options
-        <img width="15" height="15" src="https://img.icons8.com/ios/50/expand-arrow--v1.png" alt="expand-arrow--v1"/>
+        <img width="12" height="12" src="https://img.icons8.com/ios/50/expand-arrow--v1.png" alt="expand-arrow--v1"/>
         </>
         }
 
@@ -215,11 +272,18 @@ useEffect(() => {
 
           
           {/* Calculate Cost button */}
-          <div className="d-flex justify-content-end">
+          {/* <div className="d-flex justify-content-end">
             <Button className='rounded-pill' variant="primary" style={{ padding: "10px 40px" }}>
               Calculate Cost
             </Button>
-          </div>
+          </div> */}
+          {areaSize && areaSize >= 75 && areaSize <= 49975 &&
+          <>
+
+          <h3 className='mb-0'>Estimated cost of Grey Scale Construction of {areaSize} Sq. yards Area</h3>
+          <small className='mb-0 text-secondary'>Last updated on {data.cement.date}</small>
+
+          {/* 'Estimated cost of Grey Scale Construction of ' + areaSize + ' Sq. yards Area' : 'Estimated cost of Grey Scale Construction of 80 Sq. yards Area'} */}
 
           <Table striped bordered hover className="mt-3">
             <thead>
@@ -234,45 +298,51 @@ useEffect(() => {
               <tr>
                 <td>Blocks (500-700 PSI)</td>
                 <td>{blocksQuantity}</td>
-                <td>60</td>
-                <td>{calculateMaterialCost(blocksQuantity, 60)}</td>
+                <td>{blocksRate}</td>
+                <td>{formatCurrency(calculateMaterialCost(blocksQuantity, blocksRate))}</td>
               </tr>
               <tr>
                 <td>DG Cement (Bags)</td>
                 <td>{cementQuantity}</td>
-                <td>1200</td>
-                <td>{calculateMaterialCost(cementQuantity, 1200)}</td>
+                <td>{cementRate}</td>
+                <td>{formatCurrency(calculateMaterialCost(cementQuantity, cementRate))}</td>
               </tr>
               <tr>
                 <td>Sand Kotri</td>
                 <td>{sandQuantity}</td>
-                <td>50</td>
-                <td>{calculateMaterialCost(sandQuantity, 50)}</td>
+                <td>{sandRate}</td>
+                <td>{formatCurrency(calculateMaterialCost(sandQuantity, sandRate))}</td>
               </tr>
               <tr>
                 <td>Hub Crush</td>
                 <td>{crushQuantity}</td>
-                <td>50</td>
-                <td>{calculateMaterialCost(crushQuantity, 50)}</td>
+                <td>{crushRate}</td>
+                <td>{formatCurrency(calculateMaterialCost(crushQuantity, crushRate))}</td>
               </tr>
               <tr>
                 <td>Amreli Steel (Tons)</td>
                 <td>{steelQuantity}</td>
-                <td>272000</td>
-                <td>{calculateMaterialCost(steelQuantity, 272000)}</td>
+                <td>{steelRate}</td>
+                <td>{formatCurrency(calculateMaterialCost(steelQuantity, steelRate))}</td>
               </tr>
               <tr>
                 <td>Labor Cost (Per Sq. Ft)</td>
-                <td>{areaSize ? areaSize*9 : 720}</td>
+                <td>{areaSize*9}</td>
                 <td>1033.333333</td>
-                <td>{areaSize ? calculateMaterialCost(areaSize, 1033.333333) : calculateMaterialCost(720, 1033.333333)}</td>
+                <td>{formatCurrency(calculateMaterialCost(areaSize * 9, 1033.333333))}</td>
               </tr>
               <tr>
-                <td colSpan="3"><b>Final Cost</b></td>
-                <td><b>Rs. {calculateFinalCost()}</b></td>
+                <td colSpan="3"><b>Total Cost</b></td>
+                <td><b>{formatCurrency(calculateFinalCost())}</b></td>
               </tr>
             </tbody>
           </Table>
+          </>
+          
+      }
+
+        {(areaSize <= 75 || areaSize >=49975) && areaSize && <p className='text-danger mb-0'>Oops! Please enter an area size between 75 and 49975 square yards.</p>}
+
         </Form>
 
         
