@@ -6,7 +6,7 @@ import './CalculatorCSS.css'
 import DropUp from './dropup.png'
 import { useShowPricesData } from '../../ShowPricesDataProvider';
 
-function UCalculator() {
+function CCalculator() {
   const [areaSize, setAreaSize] = useState('');
   const [constructionType, setConstructionType] = useState('greyScale');
   const [constructionMode, setConstructionMode] = useState('withMaterial');
@@ -30,35 +30,35 @@ function UCalculator() {
   const [sandRate, setSandRate] = useState(0);
   const [crushRate, setCrushRate] = useState(0);
   const [steelRate, setSteelRate] = useState(0);
+  const [date, setDate] = useState('');
+
 
   const { data, loading } = useShowPricesData();
 
+  const baseQuantities = {
 
-
-  const [baseQuantities, setBaseQuantities] = useState({
     blocks: 31347,
     cement: 337,
     sand: 1685,
     crush: 1102,
     steel: 2,
-    // Add other quantities as needed
-  });
+
+  }
 
   useEffect(()=> {
-    const avgCementRate = (parseInt(data.cement['DG Cement'].min) + parseInt(data.cement['DG Cement'].max)) / 2;
-
-
-    setBlocksRate(parseInt(data.blocks["Fair Face 500-700 PSI"].price));
+    const avgCementRate = data && data.cement ? (parseInt(data.cement["DG Cement"].min) + parseInt(data.cement["DG Cement"].max)) / 2 : 0;
+    const dated = data && data.cement ? data.cement.date : ''
+    setDate(dated)
+  
+  
+  
+    setBlocksRate(data && data.blocks ? parseInt(data.blocks["Fair Face 500-700 PSI"].price) : 0);
     setCementRate(avgCementRate)
-    setSandRate(parseInt(data.sand["Sand-Kotri"].price))
-    setCrushRate(parseInt(data.crush['Crush-(Hassan Peer,Hub,Thatta) 10-25mm'].price))
-    setSteelRate(parseInt(data.steel['Amreli Steel 60-Grade'].price * 1000))
-    // setSandRate()
-    // setSandRate()
-
-
-
-  }, []);
+    setSandRate(data && data.sand ? parseInt(data.sand["Sand-Kotri"].price) : 0)
+    setCrushRate(data && data.crush ? parseInt(data.crush['Crush-(Hassan Peer,Hub,Thatta) 10-25mm'].price) : 0)
+    setSteelRate(data && data.steel ? parseInt(data.steel['Amreli Steel 60-Grade'].price * 1000) : 0)
+  
+  }, [loading]);
 
   useEffect(() => {
     // Update quantities when rooms dropdown values change
@@ -70,17 +70,6 @@ function UCalculator() {
     setCrushQuantity(Math.floor(baseQuantities.crush * ratio))
     setSteelQuantity(Math.floor(baseQuantities.steel * ratio))
   }, [bedrooms, bathrooms, kitchens, drawingRooms, livingRooms, areaSize]);
-
-
-
-//   const handleCustomizeInputs = () => {
-//     // Your custom logic for updating quantities based on customized inputs
-//     setBlocksQuantity(31347 + (livingRooms - 1) * 627 + (drawingRooms - 1) * 627 + (kitchens - 1) * 627 + (bathrooms - 1) * 627 + (bedrooms - 1) * 627);
-//     setCementQuantity(337 + (livingRooms - 1) * 7 + (drawingRooms - 1) * 7 + (kitchens - 1) * 7 + (bathrooms - 1) * 7 + (bedrooms - 1) * 7);
-//     setSandQuantity(1685 + (livingRooms - 1) * 34 + (drawingRooms - 1) * 34 + (kitchens - 1) * 34 + (bathrooms - 1) * 34 + (bedrooms - 1) * 34);
-//     // Update other quantities using a similar pattern
-//   };
-
 
 
   const calculateMaterialCost = (quantity, rate) => {
@@ -258,30 +247,11 @@ function UCalculator() {
         </p>
 
         </div>
-
-                  {/* Display calculated quantities
-        <div>
-            <p>Updated Blocks Quantity: {blocksQuantity}</p>
-            <p>Updated Cement Quantity: {cementQuantity}</p>
-            <p>Updated Sand Quantity: {sandQuantity}</p>
-            <p>Updated Crush Quantity: {crushQuantity}</p>
-            <p>Updated Steel Quantity: {steelQuantity}</p>
-            <p>Updated Labour Cost: {labourCost}</p>
-          </div> */}
-
-
-          
-          {/* Calculate Cost button */}
-          {/* <div className="d-flex justify-content-end">
-            <Button className='rounded-pill' variant="primary" style={{ padding: "10px 40px" }}>
-              Calculate Cost
-            </Button>
-          </div> */}
           {areaSize && areaSize >= 75 && areaSize <= 49975 &&
           <>
 
           <h3 className='mb-0'>Estimated cost of Grey Scale Construction of {areaSize} Sq. yards Area</h3>
-          <small className='mb-0 text-secondary'>Last updated on {data.cement.date}</small>
+          <small className='mb-0 text-secondary'>Last updated on {date}</small>
 
           {/* 'Estimated cost of Grey Scale Construction of ' + areaSize + ' Sq. yards Area' : 'Estimated cost of Grey Scale Construction of 80 Sq. yards Area'} */}
 
@@ -353,4 +323,4 @@ function UCalculator() {
   );
 }
 
-export default UCalculator;
+export default CCalculator;

@@ -40,3 +40,4 @@ export const ShowPricesDataProvider = ({ children }) => {
 
 // Create a custom hook to use the context
 export const useShowPricesData = () => useContext(ShowPricesDataContext);
+
