@@ -96,11 +96,13 @@ const Member = () => {
         <div className='page__container_wrapper member__page'>
           <div className="Member_info_container">
             <div className='heading__and_addbtn'>
-            <h6 className='c_members_heading'>All the workers under your supervision would be shown here.</h6>
+            <h6 className='c_members_heading text-secondary'>All the workers under your supervision would be shown here.</h6>
 
-                <div className='addnew__newsUpdate_btn border fw-bold' onClick={handleAddNewRow}>
-                <img width="22" height="22" src={AddNew} alt="plus--v1"/> Add new Member
+                <div className='addnew__newsUpdate_btn border' onClick={handleAddNewRow}>
+                <img width="22" height="22"  style={{marginBottom: '3px'}} src={AddNew} alt="plus--v1"/> 
+                <span className='ms-3 me-1 fw-bold'>Add new Member</span>
                 </div>
+
               
             </div>
           </div>

@@ -498,11 +498,11 @@ const AddListing = () => {
     <>
     <Sidebar />
     <Card className="add-listing-container p-4 border">
-    <h6 className='mb-1'>Add Listing</h6>
+    <h6 className='mb-1 fw-bolder text-secondary'>Add Listing</h6>
 
       <Form onSubmit={handleSubmit}>
         <div className='d-flex justify-content-between align-items-center mb-1'>
-        <h5 className='text-secondary'>Basic Information</h5>
+        <h5 className=''>Basic Information</h5>
 
         <Form.Group className="public-or-private" title='Public listing would be visible to all the users, whereas private listing would be visible to you only'>
           

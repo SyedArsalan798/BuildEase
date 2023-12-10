@@ -42,7 +42,7 @@ const ShowPricesUser = () => {
         <center>
         {/* <p className="text-success">Refresh the page to see daily updated data</p> */}
         <div className="all_prices">
-        <h3>Cement Prices</h3>
+        <h3 className="mb-0">Cement Prices</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -79,7 +79,7 @@ const ShowPricesUser = () => {
             </>
             }
 
-            <h3>Blocks Prices</h3>
+            <h3 className="mb-0">Blocks Prices</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -115,7 +115,7 @@ const ShowPricesUser = () => {
             </>
             }
 
-<h3>Aluminum Windows Prices</h3>
+<h3 className="mb-0">Aluminum Windows Prices</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -151,7 +151,7 @@ const ShowPricesUser = () => {
             </>
             }
 
-            <h3>Labour Rates</h3>
+            <h3 className="mb-0">Labour Rates</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -187,7 +187,7 @@ const ShowPricesUser = () => {
             }
 
 
-            <h3>Steel Prices</h3>
+            <h3 className="mb-0">Steel Prices</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -221,7 +221,7 @@ const ShowPricesUser = () => {
                 </div>
             }
 
-            <h3>Sand Prices</h3>
+            <h3 className="mb-0">Sand Prices</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -254,7 +254,7 @@ const ShowPricesUser = () => {
             </>
             }
 
-            <h3>Crush (Bajri) Prices</h3>
+            <h3 className="mb-0">Crush (Bajri) Prices</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -289,7 +289,7 @@ const ShowPricesUser = () => {
 
 
 
-            <h3>Marble Prices</h3>
+            <h3 className="mb-0">Marble Prices</h3>
             {loading ? (
                 <div className="loading-container">
                 <div className="loading-spinner"></div>
@@ -321,9 +321,6 @@ const ShowPricesUser = () => {
             </table>
             </>
             }
-
-
-
 
 
 

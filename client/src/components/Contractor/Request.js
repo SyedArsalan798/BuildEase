@@ -50,9 +50,9 @@ const HiringRequests = () => {
     <SearchBar/>
     <Sidebar/>
     <div>
-      <h6 className='hiring_heading text-secondary'>All the Hiring Requests from clients would be shown here.</h6>
+      <h6 className='hiring_heading text-secondary mb-0'>All the Hiring Requests from clients would be shown here.</h6>
       <h3 className='hiring_heading_h3'>Client's Requests</h3>
-      <div className="request-list">
+      <div className="request-list mt-0">
         {requests.map((request) => (
           <div className="request-card" key={request.id}>
             <div>
