@@ -2,13 +2,14 @@
 
 import React from 'react';
 import './Termscondition.css';  // Make sure to create this CSS file for styling
-import Sidebar from './Sidebar';
+import User_Sidebar from './User_Sidebar';
 
 const TermsCondition = () => {
   return (
     <>
-    <Sidebar/>
-    <div className="terms-container">
+    <User_Sidebar/>
+    
+    <div className="terms-container border">
       <h1 className="terms-heading">Terms and Conditions</h1>
       <div className="terms-content">
         <p>

@@ -132,7 +132,7 @@ function UCalculator() {
     <>
       <Card className="add-listing-container p-4 border mb-4">
         <small className='d-flex justify-content-end text-secondary'>Try refreshing the page for daily updated information.</small>
-        <h6 className='mb-1'>Cost Calculator</h6>
+        <h5 className='mb-1 fw-bolder text-secondary'>Cost Calculator</h5>
         {loading ? (
                 <span>Loading Realtime Data...</span>
 
@@ -311,7 +311,7 @@ function UCalculator() {
           
       }
 
-        {(areaSize <= 75 || areaSize >=49975) && areaSize && <p className='text-danger mb-0'>Oops! Please enter an area size between 75 and 49975 square yards.</p>}
+        {(areaSize <= 75 || areaSize >= 49975) && areaSize && <p className='text-danger mb-0'>Oops! Please enter an area size between 75 and 49975 square yards.</p>}
 
         </Form>
 

@@ -8,7 +8,7 @@ import SearchBar from './Searchbar';
 const DetailList = () => {
   // Updated data for a project
   const projectDetails = {
-    title: 'Project ABC',
+    title: 'We will design Commercial Building with Material',
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac velit vitae elit sodales eleifend. Vivamus interdum ac quam at pellentesque. Phasellus congue aliquet lorem, at hendrerit metus. Integer euismod, neque vel hendrerit accumsan, augue urna tempus purus, vitae scelerisque nunc ipsum sit amet justo.`,
     type: 'Commercial',
     residentialOptions: ['Custom Home Building', 'Flat Construction'],

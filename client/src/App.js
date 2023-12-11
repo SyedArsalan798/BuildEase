@@ -19,6 +19,7 @@ import Detaillist from './components/User/Detaillist';
 import Messsages_Contractor from './components/Contractor/Messsages_Contractor';
 import Member from './components/Contractor/members';
 import Terms from './components/Contractor/Termsconditon';
+import UTerms from './components/User/UTermsCondition'
 import Runproject from './components/Contractor/Runningproject';
 import Progress from './components/Contractor/Progress';
 import ShowPricesUser from './ShowPricesUser';
@@ -51,6 +52,8 @@ function App() {
           <Route path='/messages' element={<Messsages_Contractor />} />
           <Route path='/memberlist' element={<Member />} />
           <Route path='/termcondition' element={<Terms />} />
+          <Route path='/u_termcondition' element={<UTerms />} />
+
           <Route path='/runningproject' element={<Runproject />} />
           <Route path='/progress' element={<Progress />} />
           <Route path='/u_dailyprice' element={<ShowPricesUser />} />

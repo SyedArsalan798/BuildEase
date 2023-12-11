@@ -2,14 +2,14 @@
 
 .detail-container {
     max-width: 60%;
-    height: 500px;
+    height: auto;
     margin-left: 27%;
     margin-top: 4%;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   }
   
   .button-container {

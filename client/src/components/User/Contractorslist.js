@@ -25,14 +25,15 @@ const ContractList = () => {
         <div className="card-container">
           {cardsData.map((card) => (
             <>
-
               <div className="contractorlist-card p-0" key={card.id}>
-                <Link to={'/detailcontract'} className="card-link">
+              <div className="contractorlist-cardimage">
+                <Link to={'/'} className="card-link">
 
-                <div className="contractorlist-cardimage">
-                  <img className='border' src={card.imageSrc}></img>
-                </div>
+                
+                  <img className='border' src={card.imageSrc} width={100} height={100}></img>
+                
                 </Link>
+                </div>
                 <div className="contractorlist-cardtext mt-1">
                   <span className="date text-secondary">{card.date}</span>
                   {/* Contractor Profile link */}

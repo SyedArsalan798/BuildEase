@@ -1,26 +1,27 @@
 /* TermsCondition.css */
 
 .terms-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .terms-heading {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .terms-content {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #666;
-  }
-  
-  /* Advanced styling can be added as per your design preferences */
-  
+  max-width: 800px;
+  /* display: flex; */
+  /* justify-content: center; */
+  margin: 20px auto;
+  padding: 40px;
+  /* background-color: #f4f4f4; */
+  border-radius: 10px;
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+}
+
+.terms-heading {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.terms-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Advanced styling can be added as per your design preferences */
