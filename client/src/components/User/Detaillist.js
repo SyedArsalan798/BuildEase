@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './Detaillist.css'; // Import the CSS file for styling
 import User_Sidebar from './User_Sidebar';
 import SearchBar from './Searchbar';
+
 const DetailList = () => {
   // Updated data for a project
   const projectDetails = {
@@ -26,45 +27,51 @@ const DetailList = () => {
     console.log('Messaging the contractor...');
   };
 
-  const handleRequestHire = () => {
-    // Add logic to handle hire request
-    console.log('Requesting to hire the contractor...');
-  };
+  // Use Link to make "Request Hire" button linkable
+  const RequestHireLink = ({ children }) => (
+    <Link to="/hirerequestform" className="req-button">
+      {children}
+    </Link>
+  );
 
   return (
     <>
-    <SearchBar/>
-    <User_Sidebar/>
-    <div className="detail-container">
-      <h2>{projectDetails.title}</h2>
-      <p>{projectDetails.description}</p>
-      <div>
-        <strong>Type:</strong> {projectDetails.type}
-      </div>
-      {projectDetails.type === 'Residential' && (
+      <SearchBar />
+      <User_Sidebar />
+      <div className="detail-container">
+        <h2>{projectDetails.title}</h2>
+        <p>{projectDetails.description}</p>
         <div>
-          <strong>Residential Options:</strong>{' '}
-          {projectDetails.residentialOptions.join(', ')}
+          <strong>Type:</strong> {projectDetails.type}
         </div>
-      )}
-      {projectDetails.type === 'Commercial' && (
+        {projectDetails.type === 'Residential' && (
+          <div>
+            <strong>Residential Options:</strong>{' '}
+            {projectDetails.residentialOptions.join(', ')}
+          </div>
+        )}
+        {projectDetails.type === 'Commercial' && (
+          <div>
+            <strong>Commercial Options:</strong>{' '}
+            {projectDetails.commercialOptions.join(', ')}
+          </div>
+        )}
         <div>
-          <strong>Commercial Options:</strong>{' '}
-          {projectDetails.commercialOptions.join(', ')}
+          <strong>Area Size:</strong> {projectDetails.areaSize}
         </div>
-      )}
-      <div>
-        <strong>Area Size:</strong> {projectDetails.areaSize}
-      </div>
 
-      <div className="button-container">
-        <button className="call-button" onClick={handleCallContractor}>Call the Contractor</button>
-        <button className="msg-button" onClick={handleMessageContractor}>Message the Contractor</button>
-        <button className="req-button" onClick={handleRequestHire}>Request Hire</button>
+        <div className="button-container">
+          <button className="call-button" onClick={handleCallContractor}>
+            Call the Contractor
+          </button>
+          <button className="msg-button" onClick={handleMessageContractor}>
+            Message the Contractor
+          </button>
+          {/* Use RequestHireLink to make "Request Hire" button linkable */}
+          <RequestHireLink className="req-button">Request Hire</RequestHireLink>
+        </div>
       </div>
-    </div>
     </>
-
   );
 };
 
