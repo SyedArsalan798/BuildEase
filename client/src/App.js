@@ -26,6 +26,11 @@ import ShowPricesUser from './ShowPricesUser';
 import ShowPricesContractor from './ShowPricesContractor'; 
 import UCalculator from './components/costcalculator/u_calculator';
 import CCalculator from './components/costcalculator/c_calculator';
+import AdminHome from './components/Admin/Home';
+import ClientsView from './components/Admin/ClientsView';
+import ContractorView from './components/Admin/ContractorView';
+import Hirerequest from './components/User/Hirerequestform';
+
 
 import FeedbackEditor from './components/Contractor/messages/feedbackeditor';
 import Mail from './components/Contractor/messages/mail';
@@ -41,6 +46,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/dashboard' element={<AdminHome />} />
+          <Route path='/view_clients' element={<ClientsView />} />
+          <Route path='/view_contractor' element={<ContractorView />} />
+
+
+
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/allcontractors' element={<Showcontractor />} />
@@ -53,6 +64,7 @@ function App() {
           <Route path='/memberlist' element={<Member />} />
           <Route path='/termcondition' element={<Terms />} />
           <Route path='/u_termcondition' element={<UTerms />} />
+
 
           <Route path='/runningproject' element={<Runproject />} />
           <Route path='/progress' element={<Progress />} />
@@ -68,6 +80,8 @@ function App() {
           <Route path='/card1-details' element={<Card1detail />} />
 
           <Route path="/usermail/:index" element={<Usermail />} />
+          <Route path='/hirerequestform' element={<Hirerequest />} />
+
 
 
 

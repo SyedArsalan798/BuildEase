@@ -1,0 +1,22 @@
+.admin_dash{
+    margin-top: 20px;
+}
+
+
+.first_row_admin{
+    margin-left: 18%;
+}
+
+.first_row_admin .col{
+    width: 23%;
+}
+
+.second_row_admin{
+    margin-left: 18%;
+
+}
+
+.second_row_admin .col{
+    width: 46%;
+
+}
