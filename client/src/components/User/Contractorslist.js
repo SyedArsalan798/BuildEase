@@ -8,9 +8,9 @@ import star from '../Contractor/images/rating.png'
 
 const ContractList = () => {
   const cardsData = [
-    { id: 1, contractor_name:'Imam Ul Haq', title: 'We will design Commercial Building with Material', imageSrc: img1, rating: 3.4, review_count: 23, date: '4 days ago', views: '42'},
-    { id: 2, contractor_name:'Shahid Khakan', title: 'We will make Residential Project without Material', imageSrc: img1, rating: 4.7, review_count: 23, date: '3 days ago', views: '60' },
-    { id: 3, contractor_name:'Ayaz Hasan', title: 'Commercial Hotel Construction with High Quality Material', imageSrc: img1, rating: 4.4, review_count: 98, date: '3 days ago', views: '6.2K' },
+    { id: 1, contractor_name:'Khursheed Ahmed', title: 'We will design Residential as well as Commercial Projects  with Material', imageSrc: img1, rating: 3.4, review_count: 23, date: '4 days ago', views: '42'},
+    { id: 2, contractor_name:'Syed Taha ', title: 'We will make Residential Project ', imageSrc: img1, rating: 4.7, review_count: 23, date: '3 days ago', views: '60' },
+    { id: 3, contractor_name:'Eng.Naveed', title: 'Commercial Hotel Construction with High Quality Material', imageSrc: img1, rating: 4.4, review_count: 98, date: '3 days ago', views: '6.2K' },
 
 
   ];

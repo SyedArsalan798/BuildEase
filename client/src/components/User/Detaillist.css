@@ -37,12 +37,14 @@
   }
 
   .req-button {
+    color:white;
     background-color: #868e96;
     padding: 10px 15px;
     margin-right: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
   }
 
 
